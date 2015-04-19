@@ -1,0 +1,18 @@
+<resources md5="d0fc331933cd02263c6c8a9644716445">
+  <movie name="test1/myMovie" frameRate="24">
+    <layer name="Layer 1">
+      <kf duration="9" ref="test1/Symbol1" loc="198.95,146" pivot="77,58.5"/>
+      <kf duration="10" ref="test1/Symbol1" loc="77,251" pivot="77,58.5"/>
+      <kf duration="10" ref="test1/Symbol1" loc="198.95,256" pivot="77,58.5"/>
+      <kf duration="10" ref="test1/Symbol1" loc="327.95,250" pivot="77,58.5"/>
+      <kf duration="1" ref="test1/Symbol1" loc="198.95,146" pivot="77,58.5" tweened="false"/>
+    </layer>
+  </movie>
+  <textureGroups>
+    <textureGroup scaleFactor="1">
+      <atlas file="test1.png">
+        <texture name="test1/Symbol1" rect="1,1,154,117" origin="0,0"/>
+      </atlas>
+    </textureGroup>
+  </textureGroups>
+</resources>

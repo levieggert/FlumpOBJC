@@ -1,0 +1,34 @@
+<resources md5="e49d888201a6ae831e68051a26028436">
+  <movie name="test2/myMovie" frameRate="24">
+    <layer name="Layer 1">
+      <kf duration="14" ref="test2/Symbol3" loc="157,366.95" pivot="111.1,69.9"/>
+      <kf duration="15" ref="test2/Symbol3" loc="85,281.95" pivot="111.1,69.9"/>
+      <kf duration="15" ref="test2/Symbol3" loc="157,366.95" pivot="111.1,69.9"/>
+      <kf duration="15" ref="test2/Symbol3" loc="111.1,257.95" pivot="111.1,69.9"/>
+      <kf duration="1" ref="test2/Symbol3" loc="164.1,378.9" pivot="111.1,69.9" tweened="false"/>
+    </layer>
+    <layer name="Layer 2">
+      <kf duration="60" ref="test2/Symbol3" loc="179.95,281.95" pivot="111.1,69.9" tweened="false"/>
+    </layer>
+    <layer name="Layer 3">
+      <kf duration="60" ref="test2/Symbol2" loc="135,188" pivot="111.1,69.9" tweened="false"/>
+    </layer>
+    <layer name="Layer 4">
+      <kf duration="14" ref="test2/Symbol2" loc="150,97" pivot="111.1,69.9"/>
+      <kf duration="15" ref="test2/Symbol2" loc="251,39" pivot="111.1,69.9"/>
+      <kf duration="15" ref="test2/Symbol2" loc="74,138" pivot="111.1,69.9"/>
+      <kf duration="15" ref="test2/Symbol2" loc="251,39" pivot="111.1,69.9"/>
+      <kf duration="1" ref="test2/Symbol2" loc="70,141" pivot="111.1,69.9" tweened="false"/>
+    </layer>
+  </movie>
+  <textureGroups>
+    <textureGroup scaleFactor="1">
+      <atlas file="atlas0.png">
+        <texture name="test2/Symbol2" rect="1,1,222,139" origin="111.1,69.9"/>
+      </atlas>
+      <atlas file="atlas1.png">
+        <texture name="test2/Symbol3" rect="1,1,222,139" origin="111.1,69.9"/>
+      </atlas>
+    </textureGroup>
+  </textureGroups>
+</resources>

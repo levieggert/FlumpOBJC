@@ -1,0 +1,57 @@
+<resources md5="7023ce1a0f0c408897a817627008c515">
+  <movie name="test3/myMovie" frameRate="24">
+    <layer name="Box">
+      <kf duration="14" ref="test3/box" loc="181.55,126.65" pivot="30.5,60.5" ease="-1"/>
+      <kf duration="5" ref="test3/box" loc="151.8,126.65" pivot="30.5,60.5" ease="-1"/>
+      <kf duration="5" ref="test3/box" loc="151.8,126.65" scale="1,1.5" pivot="30.5,60.5" ease="-1"/>
+      <kf duration="15" ref="test3/box" loc="151.8,126.65" pivot="30.5,60.5" ease="-1"/>
+      <kf duration="1" ref="test3/box" loc="181.55,126.65" pivot="30.5,60.5" tweened="false"/>
+    </layer>
+    <layer name="Box4">
+      <kf duration="10" ref="test3/box" loc="211.8,126.9" pivot="30.5,0.5"/>
+      <kf duration="12" ref="test3/box" loc="211.8,126.9" scale="1,1.5" pivot="30.5,0.5"/>
+      <kf duration="18" ref="test3/box" loc="211.8,126.9" pivot="30.5,0.5" tweened="false"/>
+    </layer>
+    <layer name="Green">
+      <kf duration="7" ref="test3/box3" loc="81.8,136.9" scale="1,1.5" pivot="60.5,60.5"/>
+      <kf duration="9" ref="test3/box3" loc="81.814,136.8656" scale="1,1.5" skew="-0.1745,0" pivot="60.55,60.5"/>
+      <kf duration="14" ref="test3/box3" loc="81.8082,136.8472" scale="1,1.5" skew="-0.1746,-0.1745" pivot="60.55,60.5" tweened="false"/>
+      <kf duration="9" ref="test3/box3" loc="81.8082,136.8472" scale="1,1.5" skew="-0.1746,-0.1745" pivot="60.55,60.5"/>
+      <kf duration="1" ref="test3/box3" loc="81.8,136.9" scale="1,1.5" pivot="60.5,60.5" tweened="false"/>
+    </layer>
+    <layer name="box2">
+      <kf duration="7" ref="test3/box2" loc="181.8,126.9" pivot="15.5,30.5" ease="1"/>
+      <kf duration="23" ref="test3/box2" loc="211.8,126.9" pivot="15.5,30.5" tweened="false"/>
+      <kf duration="9" ref="test3/box2" loc="211.8,126.9" pivot="15.5,30.5" ease="1"/>
+      <kf duration="1" ref="test3/box2" loc="181.8,126.9" pivot="15.5,30.5" ease="1"/>
+    </layer>
+    <layer name="box3">
+      <kf duration="7" ref="test3/box2" loc="181.8,62.9" pivot="15.5,0.5" ease="1"/>
+      <kf duration="23" ref="test3/box2" loc="211.8,62.9" pivot="15.5,0.5" tweened="false"/>
+      <kf duration="9" ref="test3/box2" loc="211.8,62.9" pivot="15.5,0.5" ease="1"/>
+      <kf duration="1" ref="test3/box2" loc="181.8,62.9" pivot="15.5,0.5" ease="1"/>
+    </layer>
+    <layer name="Marker">
+      <kf duration="39" ref="test3/marker" loc="181.8,126.9" pivot="5.5,5.5" tweened="false"/>
+      <kf duration="1" ref="test3/marker" loc="181.8,126.9" pivot="5.5,5.5" tweened="false"/>
+    </layer>
+    <layer name="Marker2">
+      <kf duration="39" ref="test3/marker" loc="6.2,48.25" pivot="5.5,5.5" alpha="0.5" tweened="false"/>
+      <kf duration="1" ref="test3/marker" loc="6.2,48.25" pivot="5.5,5.5" alpha="0.5" tweened="false"/>
+    </layer>
+    <layer name="Origin">
+      <kf duration="39" ref="test3/marker" loc="81.8,46.9" pivot="5.5,5.5" tweened="false"/>
+      <kf duration="1" ref="test3/marker" loc="81.8,46.9" pivot="5.5,5.5" tweened="false"/>
+    </layer>
+  </movie>
+  <textureGroups>
+    <textureGroup scaleFactor="1">
+      <atlas file="test3.png">
+        <texture name="test3/box3" rect="1,1,61,61" origin="30.5,30.5"/>
+        <texture name="test3/box" rect="65,1,61,61" origin="0.5,0.5"/>
+        <texture name="test3/box2" rect="1,64,31,31" origin="15.5,15.5"/>
+        <texture name="test3/marker" rect="34,64,11,11" origin="5.5,5.5"/>
+      </atlas>
+    </textureGroup>
+  </textureGroups>
+</resources>

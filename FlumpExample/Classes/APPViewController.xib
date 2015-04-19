@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="13F1077" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APPViewController">
+            <connections>
+                <outlet property="btPause" destination="eef-Vv-Kq2" id="05T-el-PiA"/>
+                <outlet property="btPlay" destination="Y8q-pr-eX1" id="49h-gw-V9v"/>
+                <outlet property="btStop" destination="ALh-OL-Htf" id="MbM-pD-bxp"/>
+                <outlet property="flumpContainer" destination="f2Z-mM-b4W" id="Xgf-Zz-Agf"/>
+                <outlet property="view" destination="1" id="3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8q-pr-eX1" userLabel="btPlay">
+                    <rect key="frame" x="160" y="369" width="280" height="48"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="WyS-cB-eDk"/>
+                        <constraint firstAttribute="height" constant="48" id="dUP-6Y-ajE"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Play">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eef-Vv-Kq2" userLabel="btPause">
+                    <rect key="frame" x="160" y="425" width="280" height="48"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="280" id="JhK-au-gk8"/>
+                        <constraint firstAttribute="height" constant="48" id="fMJ-2d-5SU"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Pause">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ALh-OL-Htf" userLabel="btStop">
+                    <rect key="frame" x="160" y="481" width="280" height="48"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="028-57-iXl"/>
+                        <constraint firstAttribute="width" constant="280" id="xU1-UL-UwL"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Stop">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2Z-mM-b4W" userLabel="flumpContainer">
+                    <rect key="frame" x="150" y="29" width="300" height="300"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="300" id="HCO-pt-INH"/>
+                        <constraint firstAttribute="height" constant="300" id="htw-Ig-kiY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerX" secondItem="ALh-OL-Htf" secondAttribute="centerX" id="0mW-tY-ZOH"/>
+                <constraint firstItem="ALh-OL-Htf" firstAttribute="top" secondItem="eef-Vv-Kq2" secondAttribute="bottom" constant="8" id="1n2-8K-m8C"/>
+                <constraint firstAttribute="centerX" secondItem="f2Z-mM-b4W" secondAttribute="centerX" id="M6Y-7N-SeT"/>
+                <constraint firstAttribute="bottom" secondItem="ALh-OL-Htf" secondAttribute="bottom" constant="71" id="Q8Q-U8-1Je"/>
+                <constraint firstItem="f2Z-mM-b4W" firstAttribute="top" secondItem="1" secondAttribute="top" constant="29" id="SDa-2y-zES"/>
+                <constraint firstAttribute="centerX" secondItem="eef-Vv-Kq2" secondAttribute="centerX" id="gNr-8u-a9H"/>
+                <constraint firstAttribute="centerX" secondItem="Y8q-pr-eX1" secondAttribute="centerX" id="kXo-pv-589"/>
+                <constraint firstItem="eef-Vv-Kq2" firstAttribute="top" secondItem="Y8q-pr-eX1" secondAttribute="bottom" constant="8" id="ruf-Eu-uQ8"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </view>
+    </objects>
+</document>
