@@ -10,7 +10,8 @@ In this example we've taken an animation that requires 40 textures and knocked i
 
 If you'd like to see more about Flump, you can read more from the developers here:
 
-http://threerings.github.io/flump/
+http://threerings.github.io/flump
+
 https://github.com/tconkling/flump/wiki
 
 
@@ -37,26 +38,28 @@ Common pitfalls
 Double check that the atlas file attribute matches the exported atlas.png.  Sometimes this file attribute will include a path.  Depending on how you add your atlas.png's to Xcode you may need to update this field to reference the correct location of the atlas.png.
 
 Example from test3.xml
-
+```
 <atlas file="test3.png">
     <texture name="test3/box3" rect="1,1,61,61" origin="30.5,30.5"/>
     <texture name="test3/box" rect="65,1,61,61" origin="0.5,0.5"/>
     <texture name="test3/box2" rect="1,64,31,31" origin="15.5,15.5"/>
     <texture name="test3/marker" rect="34,64,11,11" origin="5.5,5.5"/>
 </atlas>
+```
 
 You can also edit your movie names in the XML.
 
 Example from test3.xml
 
+```
 <movie name="test3_movie" frameRate="24">
-	
+```
 
 Notes using Flash
 ----------------
 
-1. Flash animation should be a MovieClip Symbol Exported for Flash placed at frame 1 on the stage.
-2. All layers in the animation should be Symbols Exported for Flash as Sprites.
+1. Your flash animation should be a MovieClip symbol exported for Flash and placed at frame 1 on the stage.
+2. All layers in the animation should be symbols exported for Flash as Sprites.
 
 
 Creating a FLMPView
