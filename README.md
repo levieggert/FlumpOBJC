@@ -35,7 +35,9 @@ This has reduced our overall texture count to 5!
 Common pitfalls
 ----------------
 
-Double check that the atlas file attribute matches the exported atlas.png.  Sometimes this file attribute will include a path.  Depending on how you add your atlas.png's to Xcode you may need to update this field to reference the correct location of the atlas.png.
+Double check that the atlas file attribute matches the exported atlas.png.  Sometimes this file attribute will include a path.  Depending on how you add your atlas.png's to Xcode you may need to update this field to in order to correctly load the atlas.
+
+Atlas's are loaded into UIImages using imageName.
 
 Example from test3.xml
 ```
