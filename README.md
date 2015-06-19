@@ -73,4 +73,4 @@ FLMPExport *flumpExport = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3"]
 
 FLMPView *flumpView = [[FLMPView alloc] initWithFlumpExport:flumpExport movieName:@"test3_movie"];
 
-That's it.  Just add your flumpView to your view controller and call play.
+That's it.  Just add your flumpView to your view controller and play.
