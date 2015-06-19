@@ -7,28 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		458B4ED21B34B24B007CBDD2 /* test3.png in Resources */ = {isa = PBXBuildFile; fileRef = 458B4ECF1B34B24B007CBDD2 /* test3.png */; };
+		458B4ED31B34B24B007CBDD2 /* test3.swf in Resources */ = {isa = PBXBuildFile; fileRef = 458B4ED01B34B24B007CBDD2 /* test3.swf */; };
+		458B4ED41B34B24B007CBDD2 /* test3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 458B4ED11B34B24B007CBDD2 /* test3.xml */; };
+		458B4EE21B34B26A007CBDD2 /* FLMPAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4ED71B34B26A007CBDD2 /* FLMPAtlas.m */; };
+		458B4EE31B34B26A007CBDD2 /* FLMPExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4ED91B34B26A007CBDD2 /* FLMPExport.m */; };
+		458B4EE41B34B26A007CBDD2 /* FLMPKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EDB1B34B26A007CBDD2 /* FLMPKeyframe.m */; };
+		458B4EE51B34B26A007CBDD2 /* FLMPLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EDD1B34B26A007CBDD2 /* FLMPLayer.m */; };
+		458B4EE61B34B26A007CBDD2 /* FLMPMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EDF1B34B26A007CBDD2 /* FLMPMovie.m */; };
+		458B4EE71B34B26A007CBDD2 /* FLMPTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EE11B34B26A007CBDD2 /* FLMPTexture.m */; };
+		458B4EEC1B34B27D007CBDD2 /* FLMPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EEB1B34B27D007CBDD2 /* FLMPView.m */; };
 		45999B031AE344B100EA1BEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B021AE344B100EA1BEC /* main.m */; };
 		45999B0E1AE344B100EA1BEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45999B0D1AE344B100EA1BEC /* Images.xcassets */; };
 		45999B1D1AE344B100EA1BEC /* FlumpExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B1C1AE344B100EA1BEC /* FlumpExampleTests.m */; };
 		45999B451AE3451800EA1BEC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45999B271AE3451800EA1BEC /* Default-568h@2x.png */; };
-		45999B461AE3451800EA1BEC /* test1.png in Resources */ = {isa = PBXBuildFile; fileRef = 45999B291AE3451800EA1BEC /* test1.png */; };
-		45999B471AE3451800EA1BEC /* test1.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45999B2A1AE3451800EA1BEC /* test1.xml */; };
-		45999B481AE3451800EA1BEC /* atlas0.png in Resources */ = {isa = PBXBuildFile; fileRef = 45999B2C1AE3451800EA1BEC /* atlas0.png */; };
-		45999B491AE3451800EA1BEC /* atlas1.png in Resources */ = {isa = PBXBuildFile; fileRef = 45999B2D1AE3451800EA1BEC /* atlas1.png */; };
-		45999B4A1AE3451800EA1BEC /* test2.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45999B2E1AE3451800EA1BEC /* test2.xml */; };
-		45999B4B1AE3451800EA1BEC /* test3.png in Resources */ = {isa = PBXBuildFile; fileRef = 45999B301AE3451800EA1BEC /* test3.png */; };
-		45999B4C1AE3451800EA1BEC /* test3.swf in Resources */ = {isa = PBXBuildFile; fileRef = 45999B311AE3451800EA1BEC /* test3.swf */; };
-		45999B4D1AE3451800EA1BEC /* test3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 45999B321AE3451800EA1BEC /* test3.xml */; };
 		45999B4E1AE3451800EA1BEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B351AE3451800EA1BEC /* AppDelegate.m */; };
 		45999B4F1AE3451800EA1BEC /* APPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B371AE3451800EA1BEC /* APPViewController.m */; };
 		45999B501AE3451800EA1BEC /* APPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45999B381AE3451800EA1BEC /* APPViewController.xib */; };
-		45999B511AE3451800EA1BEC /* FLMPExport.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B3B1AE3451800EA1BEC /* FLMPExport.m */; };
-		45999B521AE3451800EA1BEC /* FLMPKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B3D1AE3451800EA1BEC /* FLMPKeyframe.m */; };
-		45999B531AE3451800EA1BEC /* FLMPLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B3F1AE3451800EA1BEC /* FLMPLayer.m */; };
-		45999B541AE3451800EA1BEC /* FLMPMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B411AE3451800EA1BEC /* FLMPMovie.m */; };
-		45E28DD11B33387700A89A0F /* FLMPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E28DD01B33387700A89A0F /* FLMPView.m */; };
-		45E28DD41B3344EF00A89A0F /* FLMPAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E28DD31B3344EF00A89A0F /* FLMPAtlas.m */; };
-		45E28DD71B33460300A89A0F /* FLMPTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E28DD61B33460300A89A0F /* FLMPTexture.m */; };
+		67DBE0D171DAB37C81015A55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 952B6851C9DEFBCC41236AA4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +38,23 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		458B4ECF1B34B24B007CBDD2 /* test3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test3.png; sourceTree = "<group>"; };
+		458B4ED01B34B24B007CBDD2 /* test3.swf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test3.swf; sourceTree = "<group>"; };
+		458B4ED11B34B24B007CBDD2 /* test3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test3.xml; sourceTree = "<group>"; };
+		458B4ED61B34B26A007CBDD2 /* FLMPAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPAtlas.h; sourceTree = "<group>"; };
+		458B4ED71B34B26A007CBDD2 /* FLMPAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPAtlas.m; sourceTree = "<group>"; };
+		458B4ED81B34B26A007CBDD2 /* FLMPExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPExport.h; sourceTree = "<group>"; };
+		458B4ED91B34B26A007CBDD2 /* FLMPExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPExport.m; sourceTree = "<group>"; };
+		458B4EDA1B34B26A007CBDD2 /* FLMPKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPKeyframe.h; sourceTree = "<group>"; };
+		458B4EDB1B34B26A007CBDD2 /* FLMPKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPKeyframe.m; sourceTree = "<group>"; };
+		458B4EDC1B34B26A007CBDD2 /* FLMPLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPLayer.h; sourceTree = "<group>"; };
+		458B4EDD1B34B26A007CBDD2 /* FLMPLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPLayer.m; sourceTree = "<group>"; };
+		458B4EDE1B34B26A007CBDD2 /* FLMPMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPMovie.h; sourceTree = "<group>"; };
+		458B4EDF1B34B26A007CBDD2 /* FLMPMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPMovie.m; sourceTree = "<group>"; };
+		458B4EE01B34B26A007CBDD2 /* FLMPTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPTexture.h; sourceTree = "<group>"; };
+		458B4EE11B34B26A007CBDD2 /* FLMPTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPTexture.m; sourceTree = "<group>"; };
+		458B4EEA1B34B27D007CBDD2 /* FLMPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPView.h; sourceTree = "<group>"; };
+		458B4EEB1B34B27D007CBDD2 /* FLMPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPView.m; sourceTree = "<group>"; };
 		45999AFD1AE344B100EA1BEC /* FlumpExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlumpExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45999B011AE344B100EA1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45999B021AE344B100EA1BEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -50,33 +63,14 @@
 		45999B1B1AE344B100EA1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45999B1C1AE344B100EA1BEC /* FlumpExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlumpExampleTests.m; sourceTree = "<group>"; };
 		45999B271AE3451800EA1BEC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		45999B291AE3451800EA1BEC /* test1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test1.png; sourceTree = "<group>"; };
-		45999B2A1AE3451800EA1BEC /* test1.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test1.xml; sourceTree = "<group>"; };
-		45999B2C1AE3451800EA1BEC /* atlas0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas0.png; sourceTree = "<group>"; };
-		45999B2D1AE3451800EA1BEC /* atlas1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = atlas1.png; sourceTree = "<group>"; };
-		45999B2E1AE3451800EA1BEC /* test2.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test2.xml; sourceTree = "<group>"; };
-		45999B301AE3451800EA1BEC /* test3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test3.png; sourceTree = "<group>"; };
-		45999B311AE3451800EA1BEC /* test3.swf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test3.swf; sourceTree = "<group>"; };
-		45999B321AE3451800EA1BEC /* test3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test3.xml; sourceTree = "<group>"; };
 		45999B341AE3451800EA1BEC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		45999B351AE3451800EA1BEC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		45999B361AE3451800EA1BEC /* APPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPViewController.h; sourceTree = "<group>"; };
 		45999B371AE3451800EA1BEC /* APPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPViewController.m; sourceTree = "<group>"; };
 		45999B381AE3451800EA1BEC /* APPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPViewController.xib; sourceTree = "<group>"; };
-		45999B3A1AE3451800EA1BEC /* FLMPExport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPExport.h; sourceTree = "<group>"; };
-		45999B3B1AE3451800EA1BEC /* FLMPExport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPExport.m; sourceTree = "<group>"; };
-		45999B3C1AE3451800EA1BEC /* FLMPKeyframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPKeyframe.h; sourceTree = "<group>"; };
-		45999B3D1AE3451800EA1BEC /* FLMPKeyframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPKeyframe.m; sourceTree = "<group>"; };
-		45999B3E1AE3451800EA1BEC /* FLMPLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPLayer.h; sourceTree = "<group>"; };
-		45999B3F1AE3451800EA1BEC /* FLMPLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPLayer.m; sourceTree = "<group>"; };
-		45999B401AE3451800EA1BEC /* FLMPMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPMovie.h; sourceTree = "<group>"; };
-		45999B411AE3451800EA1BEC /* FLMPMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPMovie.m; sourceTree = "<group>"; };
-		45E28DCF1B33387700A89A0F /* FLMPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPView.h; sourceTree = "<group>"; };
-		45E28DD01B33387700A89A0F /* FLMPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPView.m; sourceTree = "<group>"; };
-		45E28DD21B3344EF00A89A0F /* FLMPAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPAtlas.h; sourceTree = "<group>"; };
-		45E28DD31B3344EF00A89A0F /* FLMPAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPAtlas.m; sourceTree = "<group>"; };
-		45E28DD51B33460300A89A0F /* FLMPTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPTexture.h; sourceTree = "<group>"; };
-		45E28DD61B33460300A89A0F /* FLMPTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPTexture.m; sourceTree = "<group>"; };
+		5EC4A8794A44D4497BA70B48 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		952B6851C9DEFBCC41236AA4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		E77D52720C24D6B0D83EC266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67DBE0D171DAB37C81015A55 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,12 +92,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		458B4ED51B34B26A007CBDD2 /* export */ = {
+			isa = PBXGroup;
+			children = (
+				458B4ED61B34B26A007CBDD2 /* FLMPAtlas.h */,
+				458B4ED71B34B26A007CBDD2 /* FLMPAtlas.m */,
+				458B4ED81B34B26A007CBDD2 /* FLMPExport.h */,
+				458B4ED91B34B26A007CBDD2 /* FLMPExport.m */,
+				458B4EDA1B34B26A007CBDD2 /* FLMPKeyframe.h */,
+				458B4EDB1B34B26A007CBDD2 /* FLMPKeyframe.m */,
+				458B4EDC1B34B26A007CBDD2 /* FLMPLayer.h */,
+				458B4EDD1B34B26A007CBDD2 /* FLMPLayer.m */,
+				458B4EDE1B34B26A007CBDD2 /* FLMPMovie.h */,
+				458B4EDF1B34B26A007CBDD2 /* FLMPMovie.m */,
+				458B4EE01B34B26A007CBDD2 /* FLMPTexture.h */,
+				458B4EE11B34B26A007CBDD2 /* FLMPTexture.m */,
+			);
+			path = export;
+			sourceTree = "<group>";
+		};
+		458B4EE81B34B27D007CBDD2 /* sparrow */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = sparrow;
+			sourceTree = "<group>";
+		};
+		458B4EE91B34B27D007CBDD2 /* uikit */ = {
+			isa = PBXGroup;
+			children = (
+				458B4EEA1B34B27D007CBDD2 /* FLMPView.h */,
+				458B4EEB1B34B27D007CBDD2 /* FLMPView.m */,
+			);
+			path = uikit;
+			sourceTree = "<group>";
+		};
 		45999AF41AE344B100EA1BEC = {
 			isa = PBXGroup;
 			children = (
 				45999AFF1AE344B100EA1BEC /* FlumpExample */,
 				45999B191AE344B100EA1BEC /* FlumpExampleTests */,
 				45999AFE1AE344B100EA1BEC /* Products */,
+				F62CF9670AC21A35FB134050 /* Pods */,
+				C01401D4169434EC72A29871 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -155,41 +187,12 @@
 		45999B261AE3451800EA1BEC /* assets */ = {
 			isa = PBXGroup;
 			children = (
+				458B4ECF1B34B24B007CBDD2 /* test3.png */,
+				458B4ED01B34B24B007CBDD2 /* test3.swf */,
+				458B4ED11B34B24B007CBDD2 /* test3.xml */,
 				45999B271AE3451800EA1BEC /* Default-568h@2x.png */,
-				45999B281AE3451800EA1BEC /* test1 */,
-				45999B2B1AE3451800EA1BEC /* test2 */,
-				45999B2F1AE3451800EA1BEC /* test3 */,
 			);
 			path = assets;
-			sourceTree = "<group>";
-		};
-		45999B281AE3451800EA1BEC /* test1 */ = {
-			isa = PBXGroup;
-			children = (
-				45999B291AE3451800EA1BEC /* test1.png */,
-				45999B2A1AE3451800EA1BEC /* test1.xml */,
-			);
-			path = test1;
-			sourceTree = "<group>";
-		};
-		45999B2B1AE3451800EA1BEC /* test2 */ = {
-			isa = PBXGroup;
-			children = (
-				45999B2C1AE3451800EA1BEC /* atlas0.png */,
-				45999B2D1AE3451800EA1BEC /* atlas1.png */,
-				45999B2E1AE3451800EA1BEC /* test2.xml */,
-			);
-			path = test2;
-			sourceTree = "<group>";
-		};
-		45999B2F1AE3451800EA1BEC /* test3 */ = {
-			isa = PBXGroup;
-			children = (
-				45999B301AE3451800EA1BEC /* test3.png */,
-				45999B311AE3451800EA1BEC /* test3.swf */,
-				45999B321AE3451800EA1BEC /* test3.xml */,
-			);
-			path = test3;
 			sourceTree = "<group>";
 		};
 		45999B331AE3451800EA1BEC /* Classes */ = {
@@ -208,22 +211,28 @@
 		45999B391AE3451800EA1BEC /* flump */ = {
 			isa = PBXGroup;
 			children = (
-				45E28DD21B3344EF00A89A0F /* FLMPAtlas.h */,
-				45E28DD31B3344EF00A89A0F /* FLMPAtlas.m */,
-				45999B3A1AE3451800EA1BEC /* FLMPExport.h */,
-				45999B3B1AE3451800EA1BEC /* FLMPExport.m */,
-				45999B3C1AE3451800EA1BEC /* FLMPKeyframe.h */,
-				45999B3D1AE3451800EA1BEC /* FLMPKeyframe.m */,
-				45999B3E1AE3451800EA1BEC /* FLMPLayer.h */,
-				45999B3F1AE3451800EA1BEC /* FLMPLayer.m */,
-				45999B401AE3451800EA1BEC /* FLMPMovie.h */,
-				45999B411AE3451800EA1BEC /* FLMPMovie.m */,
-				45E28DD51B33460300A89A0F /* FLMPTexture.h */,
-				45E28DD61B33460300A89A0F /* FLMPTexture.m */,
-				45E28DCF1B33387700A89A0F /* FLMPView.h */,
-				45E28DD01B33387700A89A0F /* FLMPView.m */,
+				458B4ED51B34B26A007CBDD2 /* export */,
+				458B4EE81B34B27D007CBDD2 /* sparrow */,
+				458B4EE91B34B27D007CBDD2 /* uikit */,
 			);
 			path = flump;
+			sourceTree = "<group>";
+		};
+		C01401D4169434EC72A29871 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				952B6851C9DEFBCC41236AA4 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F62CF9670AC21A35FB134050 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E77D52720C24D6B0D83EC266 /* Pods.debug.xcconfig */,
+				5EC4A8794A44D4497BA70B48 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -233,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 45999B201AE344B100EA1BEC /* Build configuration list for PBXNativeTarget "FlumpExample" */;
 			buildPhases = (
+				203CC15A60A73F18B421FAF6 /* Check Pods Manifest.lock */,
 				45999AF91AE344B100EA1BEC /* Sources */,
 				45999AFA1AE344B100EA1BEC /* Frameworks */,
 				45999AFB1AE344B100EA1BEC /* Resources */,
+				FA8696AEFA74DE150BBD0C1D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -307,16 +318,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				45999B0E1AE344B100EA1BEC /* Images.xcassets in Resources */,
-				45999B491AE3451800EA1BEC /* atlas1.png in Resources */,
-				45999B471AE3451800EA1BEC /* test1.xml in Resources */,
-				45999B4A1AE3451800EA1BEC /* test2.xml in Resources */,
+				458B4ED31B34B24B007CBDD2 /* test3.swf in Resources */,
 				45999B501AE3451800EA1BEC /* APPViewController.xib in Resources */,
 				45999B451AE3451800EA1BEC /* Default-568h@2x.png in Resources */,
-				45999B481AE3451800EA1BEC /* atlas0.png in Resources */,
-				45999B461AE3451800EA1BEC /* test1.png in Resources */,
-				45999B4B1AE3451800EA1BEC /* test3.png in Resources */,
-				45999B4C1AE3451800EA1BEC /* test3.swf in Resources */,
-				45999B4D1AE3451800EA1BEC /* test3.xml in Resources */,
+				458B4ED21B34B24B007CBDD2 /* test3.png in Resources */,
+				458B4ED41B34B24B007CBDD2 /* test3.xml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,21 +335,54 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		203CC15A60A73F18B421FAF6 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA8696AEFA74DE150BBD0C1D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		45999AF91AE344B100EA1BEC /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45999B531AE3451800EA1BEC /* FLMPLayer.m in Sources */,
-				45999B541AE3451800EA1BEC /* FLMPMovie.m in Sources */,
-				45999B511AE3451800EA1BEC /* FLMPExport.m in Sources */,
-				45E28DD11B33387700A89A0F /* FLMPView.m in Sources */,
+				458B4EE61B34B26A007CBDD2 /* FLMPMovie.m in Sources */,
+				458B4EE71B34B26A007CBDD2 /* FLMPTexture.m in Sources */,
 				45999B4F1AE3451800EA1BEC /* APPViewController.m in Sources */,
+				458B4EE51B34B26A007CBDD2 /* FLMPLayer.m in Sources */,
 				45999B4E1AE3451800EA1BEC /* AppDelegate.m in Sources */,
-				45999B521AE3451800EA1BEC /* FLMPKeyframe.m in Sources */,
-				45E28DD41B3344EF00A89A0F /* FLMPAtlas.m in Sources */,
+				458B4EE21B34B26A007CBDD2 /* FLMPAtlas.m in Sources */,
+				458B4EE31B34B26A007CBDD2 /* FLMPExport.m in Sources */,
+				458B4EEC1B34B27D007CBDD2 /* FLMPView.m in Sources */,
+				458B4EE41B34B26A007CBDD2 /* FLMPKeyframe.m in Sources */,
 				45999B031AE344B100EA1BEC /* main.m in Sources */,
-				45E28DD71B33460300A89A0F /* FLMPTexture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +485,7 @@
 		};
 		45999B211AE344B100EA1BEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E77D52720C24D6B0D83EC266 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (
@@ -462,6 +502,7 @@
 		};
 		45999B221AE344B100EA1BEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5EC4A8794A44D4497BA70B48 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				HEADER_SEARCH_PATHS = (

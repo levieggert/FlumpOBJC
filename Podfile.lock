@@ -1,0 +1,10 @@
+PODS:
+  - Sparrow (2.1)
+
+DEPENDENCIES:
+  - Sparrow (= 2.1)
+
+SPEC CHECKSUMS:
+  Sparrow: 40fc3e59c52157772d1609dd34f72e1e8c5db88e
+
+COCOAPODS: 0.35.0
