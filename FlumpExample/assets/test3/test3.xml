@@ -1,5 +1,5 @@
 <resources md5="7023ce1a0f0c408897a817627008c515">
-  <movie name="test3/myMovie" frameRate="24">
+  <movie name="test3_movie" frameRate="24">
     <layer name="Box">
       <kf duration="14" ref="test3/box" loc="181.55,126.65" pivot="30.5,60.5" ease="-1"/>
       <kf duration="5" ref="test3/box" loc="151.8,126.65" pivot="30.5,60.5" ease="-1"/>

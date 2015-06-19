@@ -1,49 +1,73 @@
-Flump runtime for iOS
+Flump Objective-C Runtime for iOS
 ======
-
-Dependencies -
-
-XML files exported from Flump are parsed via RaptureXML.
-
-https://github.com/ZaBlanc/RaptureXML
-
-Installing RaptureXML:
-
-In Build Phases link the following:
-
-1. libz.dylib
-2. libxml2.dylib
-
-In your build settings, add the following to your "Header Search Paths":
-
-$(SDK_DIR)"/usr/include/libxml2
 
 What is Flump?
 ----------------
 
-Well if you haven't heard about Flump I suggest taking a look at the Application here first! 
+The purpose of Flump is to reduce texture memory consumed by your animations.
+
+In this example we've taken an animation that requires 40 textures and knocked it down to use only 5 textures.  All of this, with the power of Flump.
+
+If you'd like to see more about Flump, you can read more from the developers here:
+
 http://threerings.github.io/flump/
+https://github.com/tconkling/flump/wiki
 
-FLMP is the Flump runtime for iOS.  It has classes that handle managing flump exports and parsing exports into movies that can be used in your app.
-
-Note! Flump export xml contained a scaleFactor on textureGroups.  This has not been added into the parser.  So assume scaleFactor is always 1.
 
 How does it work?
------------------
+----------------
 
-FLMP is broken down into 4 core classes.
+In this example we have an animation that is 40 frames in length. 
 
-* Core
+A traditional approach to render this animation would be to save 40 textures and display a texture for each frame. Just like a flip book.  However, saving 40 textures isn't very efficient.  Here's where Flump kicks in.
 
-1. FLMPExport - This class is responsible for parsing xml file's exported from Flump.  This class will be used for building and storing your FLMPMovies.  An xml can contain more than one movie so movies are stored in a dictionary.  To retrieve a FLMPMovie use the movie name as the dictionary key.  Movie names can be found in the exported xml movie node.  Note that no paths are used in FLMPExport.  All paths are reduced to file name.
+When Flump exports a SWF file it does 2 things.
 
-2. FLMPMovie - This class is used to play your flump animations. FLMPMovie's are broken into layers(FLMPLayer) of animated UIImageViews.  Instead of having a texture for each frame, UIImageViews are transformed and tweened frame by frame.  This gives us minimal textures to use and thus low memory.  Thank you Flump!
+1. It stuffs all textures required for your animation into texture atlases.
+2. It spits out a bunch of data that houses keyframe information about your animation.  Each keyframe holds the necessary information to create a sub texture from an exported texture atlas as well as the transforms that should be applied to that texture when rendering a frame.
 
-3. FLMPLayer - These are animated layers that make up the movie.  This class contains a UIImageViews's dictionary of all UIImageViews required for the layer.  It also holds an array of FLMPKeyframes which hold transformation data to manipulate UIImageViews.
+So in this example we have 1 texture atlas exported from Flump as well as 4 sub textures created from this atlas.  At runtime we display a texture and apply the appropriate transformations to render the animation frame.
 
-4. FLMPkeyframe - This is a helper class for FLMPLayer.  When it comes time to update a new frame, a layer will pull a keyframe and use that transform data to update the UIImageView.
+This has reduced our overall texture count to 5!
 
-The future of FLMP.
----------------------
 
-I haven't had the chance to use FLMP in a major app.  I've only tested a few animations.  Some that had tweens and some that didn't have any tweens.  But, from what I have tested, the animations run great!
+Common pitfalls
+----------------
+
+Double check that the atlas file attribute matches the exported atlas.png.  Sometimes this file attribute will include a path.  Depending on how you add your atlas.png's to Xcode you may need to update this field to reference the correct location of the atlas.png.
+
+Example from test3.xml
+
+<atlas file="test3.png">
+    <texture name="test3/box3" rect="1,1,61,61" origin="30.5,30.5"/>
+    <texture name="test3/box" rect="65,1,61,61" origin="0.5,0.5"/>
+    <texture name="test3/box2" rect="1,64,31,31" origin="15.5,15.5"/>
+    <texture name="test3/marker" rect="34,64,11,11" origin="5.5,5.5"/>
+</atlas>
+
+You can also edit your movie names in the XML.
+
+Example from test3.xml
+
+<movie name="test3_movie" frameRate="24">
+	
+
+Notes using Flash
+----------------
+
+1. Flash animation should be a MovieClip Symbol Exported for Flash placed at frame 1 on the stage.
+2. All layers in the animation should be Symbols Exported for Flash as Sprites.
+
+
+Creating a FLMPView
+----------------
+
+1. Create a FLMPExport with an exported Flump XML file.
+
+FLMPExport *flumpExport = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3"];
+
+2. Create a FLMPView with your flumpExport along with a movieName found in the export XML.
+
+FLMPView *flumpView = [[FLMPView alloc] initWithFlumpExport:flumpExport movieName:@"test3_movie"];
+
+That's it.  Just add your flumpView to your view controller and call play.

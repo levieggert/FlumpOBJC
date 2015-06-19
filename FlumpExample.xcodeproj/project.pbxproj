@@ -26,9 +26,9 @@
 		45999B521AE3451800EA1BEC /* FLMPKeyframe.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B3D1AE3451800EA1BEC /* FLMPKeyframe.m */; };
 		45999B531AE3451800EA1BEC /* FLMPLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B3F1AE3451800EA1BEC /* FLMPLayer.m */; };
 		45999B541AE3451800EA1BEC /* FLMPMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B411AE3451800EA1BEC /* FLMPMovie.m */; };
-		45999B551AE3451800EA1BEC /* RXMLElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B441AE3451800EA1BEC /* RXMLElement.m */; };
-		45999B571AE3455B00EA1BEC /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45999B561AE3455B00EA1BEC /* libz.dylib */; };
-		45999B591AE3456600EA1BEC /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 45999B581AE3456600EA1BEC /* libxml2.dylib */; };
+		45E28DD11B33387700A89A0F /* FLMPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E28DD01B33387700A89A0F /* FLMPView.m */; };
+		45E28DD41B3344EF00A89A0F /* FLMPAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E28DD31B3344EF00A89A0F /* FLMPAtlas.m */; };
+		45E28DD71B33460300A89A0F /* FLMPTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E28DD61B33460300A89A0F /* FLMPTexture.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,10 +71,12 @@
 		45999B3F1AE3451800EA1BEC /* FLMPLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPLayer.m; sourceTree = "<group>"; };
 		45999B401AE3451800EA1BEC /* FLMPMovie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPMovie.h; sourceTree = "<group>"; };
 		45999B411AE3451800EA1BEC /* FLMPMovie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPMovie.m; sourceTree = "<group>"; };
-		45999B431AE3451800EA1BEC /* RXMLElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RXMLElement.h; sourceTree = "<group>"; };
-		45999B441AE3451800EA1BEC /* RXMLElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RXMLElement.m; sourceTree = "<group>"; };
-		45999B561AE3455B00EA1BEC /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		45999B581AE3456600EA1BEC /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		45E28DCF1B33387700A89A0F /* FLMPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPView.h; sourceTree = "<group>"; };
+		45E28DD01B33387700A89A0F /* FLMPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPView.m; sourceTree = "<group>"; };
+		45E28DD21B3344EF00A89A0F /* FLMPAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPAtlas.h; sourceTree = "<group>"; };
+		45E28DD31B3344EF00A89A0F /* FLMPAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPAtlas.m; sourceTree = "<group>"; };
+		45E28DD51B33460300A89A0F /* FLMPTexture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPTexture.h; sourceTree = "<group>"; };
+		45E28DD61B33460300A89A0F /* FLMPTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPTexture.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,8 +84,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45999B591AE3456600EA1BEC /* libxml2.dylib in Frameworks */,
-				45999B571AE3455B00EA1BEC /* libz.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -100,8 +100,6 @@
 		45999AF41AE344B100EA1BEC = {
 			isa = PBXGroup;
 			children = (
-				45999B581AE3456600EA1BEC /* libxml2.dylib */,
-				45999B561AE3455B00EA1BEC /* libz.dylib */,
 				45999AFF1AE344B100EA1BEC /* FlumpExample */,
 				45999B191AE344B100EA1BEC /* FlumpExampleTests */,
 				45999AFE1AE344B100EA1BEC /* Products */,
@@ -203,7 +201,6 @@
 				45999B371AE3451800EA1BEC /* APPViewController.m */,
 				45999B381AE3451800EA1BEC /* APPViewController.xib */,
 				45999B391AE3451800EA1BEC /* flump */,
-				45999B421AE3451800EA1BEC /* libs */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -211,6 +208,8 @@
 		45999B391AE3451800EA1BEC /* flump */ = {
 			isa = PBXGroup;
 			children = (
+				45E28DD21B3344EF00A89A0F /* FLMPAtlas.h */,
+				45E28DD31B3344EF00A89A0F /* FLMPAtlas.m */,
 				45999B3A1AE3451800EA1BEC /* FLMPExport.h */,
 				45999B3B1AE3451800EA1BEC /* FLMPExport.m */,
 				45999B3C1AE3451800EA1BEC /* FLMPKeyframe.h */,
@@ -219,17 +218,12 @@
 				45999B3F1AE3451800EA1BEC /* FLMPLayer.m */,
 				45999B401AE3451800EA1BEC /* FLMPMovie.h */,
 				45999B411AE3451800EA1BEC /* FLMPMovie.m */,
+				45E28DD51B33460300A89A0F /* FLMPTexture.h */,
+				45E28DD61B33460300A89A0F /* FLMPTexture.m */,
+				45E28DCF1B33387700A89A0F /* FLMPView.h */,
+				45E28DD01B33387700A89A0F /* FLMPView.m */,
 			);
 			path = flump;
-			sourceTree = "<group>";
-		};
-		45999B421AE3451800EA1BEC /* libs */ = {
-			isa = PBXGroup;
-			children = (
-				45999B431AE3451800EA1BEC /* RXMLElement.h */,
-				45999B441AE3451800EA1BEC /* RXMLElement.m */,
-			);
-			path = libs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -343,11 +337,13 @@
 				45999B531AE3451800EA1BEC /* FLMPLayer.m in Sources */,
 				45999B541AE3451800EA1BEC /* FLMPMovie.m in Sources */,
 				45999B511AE3451800EA1BEC /* FLMPExport.m in Sources */,
+				45E28DD11B33387700A89A0F /* FLMPView.m in Sources */,
 				45999B4F1AE3451800EA1BEC /* APPViewController.m in Sources */,
 				45999B4E1AE3451800EA1BEC /* AppDelegate.m in Sources */,
-				45999B551AE3451800EA1BEC /* RXMLElement.m in Sources */,
 				45999B521AE3451800EA1BEC /* FLMPKeyframe.m in Sources */,
+				45E28DD41B3344EF00A89A0F /* FLMPAtlas.m in Sources */,
 				45999B031AE344B100EA1BEC /* main.m in Sources */,
+				45E28DD71B33460300A89A0F /* FLMPTexture.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -455,7 +451,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SDK_DIR)\"/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = FlumpExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -472,7 +467,6 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
-					"$(SDK_DIR)\"/usr/include/libxml2",
 				);
 				INFOPLIST_FILE = FlumpExample/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

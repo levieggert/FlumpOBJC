@@ -6,236 +6,321 @@
 #import "FLMPMovie.h"
 #import "FLMPLayer.h"
 #import "FLMPKeyframe.h"
-
-#import "RXMLElement.h"
+#import "FLMPAtlas.h"
+#import "FLMPTexture.h"
+#import "FLMPView.h"
 
 @implementation FLMPExport
 
-- (id)init
+-(id)initWithFlumpXMLFileName:(NSString *)fileName
 {
     self = [super init];
     if (self) {
         // Initialization code here.
+        
+        NSBundle *mainBundle = [NSBundle mainBundle];
+        NSString *xmlPath = [mainBundle pathForResource:fileName ofType:@"xml"];
+        NSData *xmlData = [[NSData alloc] initWithContentsOfFile:xmlPath];
+        
+        _flumpXMLParser = [[NSXMLParser alloc] initWithData:xmlData];
+        self.flumpXMLParser.delegate = self;
+        [self.flumpXMLParser parse];
     }
     
     return self;
-}
-
-+(FLMPExport *)flumpExportWithXMLFileName:(NSString *)fileName
-{
-    return [[FLMPExport alloc] initWithXMLFileName:fileName];
 }
 
 -(void)dealloc
 {
-    _moviesDictionary = nil;
-    _subTextures = nil;
-}
-
--(id)initWithXMLFileName:(NSString *)fileName
-{
-    self = [super init];
-    if (self) {
-        // Initialization code here.
-        
-        //printf("\n fileName: %s", [fileName UTF8String]);
-        
-        RXMLElement *xmlElement = [RXMLElement elementFromXMLFile:fileName];
-        
-        //load all textures
-        NSArray *atlasXMLArray = [[[xmlElement child:@"textureGroups"]
-                                   child:@"textureGroup"]
-                                  children:@"atlas"];
-        
-        [self loadTexturesFromAtlasXMLArray:atlasXMLArray];
-        
-        //load movies
-        [self loadMoviesFromMoviesXMLArray:[xmlElement children:@"movie"]];
-    }
-    
-    return self;
+    _flumpXMLParser = nil;
+    _movies = nil;
+    _atlases = nil;
 }
 
 #pragma mark private methods
 
--(UIImage *)renderImageForAntialiasing:(UIImage *)image
+-(void)addMovie:(FLMPMovie *)movie
 {
-    CGFloat width = image.size.width;
-    CGFloat height = image.size.height;
+    if (movie == nil)
+    {
+        return;
+    }
     
-    CGSize imageSize = CGSizeMake(width + 2.0f, height + 2.0f);
+    if (self.movies == nil)
+    {
+        _movies = [[NSMutableArray alloc] init];
+    }
     
-    UIGraphicsBeginImageContextWithOptions(imageSize, NO, 0.0f);
-    [image drawInRect:CGRectMake(1.0f, 1.0f, width, height)];
-    CGContextSetInterpolationQuality(UIGraphicsGetCurrentContext(), kCGInterpolationHigh);
-    UIImage *renderedImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return renderedImage;
+    [self.movies addObject:movie];
 }
 
--(void)loadTexturesFromAtlasXMLArray:(NSArray *)atlasXMLArray
+-(void)addAtlas:(FLMPAtlas *)atlas
 {
-    _subTextures = [[NSMutableDictionary alloc] init];
-    
-    NSArray *textureXMLArray;
-    UIImage *textureAtlas;
-    NSString *atlasFile;
-    UIImage *subTexture;
-    NSString *subTextureName;
-    CGRect rectangle;
-    //CGPoint origin;
-    NSArray *array;
-    CGImageRef imageRef;
-    
-    for (RXMLElement *atlasXML in atlasXMLArray)
+    if (atlas == nil)
     {
-        atlasFile = [atlasXML attribute:@"file"];
-        //printf("\n atlasFile: %s", [atlasFile UTF8String]);
-        textureAtlas = [UIImage imageNamed:atlasFile];
-        
-        textureXMLArray = [atlasXML children:@"texture"];
-        
-        for (RXMLElement *textureXML in textureXMLArray)
-        {
-            subTextureName = [textureXML attribute:@"name"];
-            //printf("\n subTextureName: %s", [subTextureName UTF8String]);
-            
-            //rect
-            array = [[textureXML attribute:@"rect"] componentsSeparatedByString:@","];
-            rectangle = CGRectMake([[array objectAtIndex:0] intValue], [[array objectAtIndex:1] intValue], [[array objectAtIndex:2] intValue], [[array objectAtIndex:3] intValue]);
-            
-            //origin
-            array = [[textureXML attribute:@"origin"] componentsSeparatedByString:@","];
-            //origin = CGPointMake([[array objectAtIndex:0] floatValue], [[array objectAtIndex:1] floatValue]);
-            
-            //subTexture
-            imageRef = CGImageCreateWithImageInRect(textureAtlas.CGImage, rectangle);
-            subTexture = [UIImage imageWithCGImage:imageRef];
-            CGImageRelease(imageRef);
-            
-            subTexture = [self renderImageForAntialiasing:subTexture];
+        return;
+    }
+    
+    if (self.atlases == nil)
+    {
+        _atlases = [[NSMutableArray alloc] init];
+    }
+    
+    [self.atlases addObject:atlas];
+}
 
-            [_subTextures setValue:subTexture forKey:subTextureName];
+#pragma mark public methods
+
+-(FLMPView *)getFlumpViewWithMovieName:(NSString *)movieName
+{
+    return [[FLMPView alloc] initWithFlumpExport:self movieName:movieName];
+}
+
+-(FLMPMovie *)getFlumpMovieWithMovieName:(NSString *)movieName
+{
+    if (movieName == nil)
+    {
+        return nil;
+    }
+    
+    for (FLMPMovie *flumpMovie in self.movies)
+    {
+        if ([movieName isEqualToString:flumpMovie.movieName])
+        {
+            return flumpMovie;
+        }
+    }
+    
+    return nil;
+}
+
+-(FLMPAtlas *)getAtlasWithTextureName:(NSString *)textureName
+{
+    if (textureName == nil)
+    {
+        return nil;
+    }
+    
+    if (self.atlases != nil)
+    {
+        for (FLMPAtlas *atlas in self.atlases)
+        {
+            if ([atlas containsTextureWithTextureName:textureName])
+            {
+                return atlas;
+            }
+        }
+    }
+    
+    return nil;
+}
+
+#pragma mark NSXMLParserDelegate
+
+-(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
+{
+    if ([elementName isEqualToString:@"movie"])
+    {
+        FLMPMovie *flumpMovie = [[FLMPMovie alloc] init];
+        NSString *movieName = [attributeDict objectForKey:@"name"];
+        CGFloat fps = [[attributeDict objectForKey:@"frameRate"] floatValue];
+        
+        flumpMovie.movieName = movieName;
+        flumpMovie.fps = fps;
+        
+        [self addMovie:flumpMovie];
+    }
+    else if ([elementName isEqualToString:@"layer"])
+    {
+        FLMPMovie *flumpMovie = [self.movies lastObject];
+        NSString *layerName = [attributeDict objectForKey:@"name"];
+        
+        if (flumpMovie != nil)
+        {
+            FLMPLayer *flumpLayer = [[FLMPLayer alloc] init];
+            flumpLayer.layerName = layerName;
+            
+            [flumpMovie addLayer:flumpLayer];
+        }
+    }
+    else if ([elementName isEqualToString:@"kf"])
+    {
+        FLMPMovie *flumpMovie = [self.movies lastObject];
+        FLMPLayer *flumpLayer = [flumpMovie.layers lastObject];
+        
+        NSString *stringDuration = [attributeDict objectForKey:@"duration"];
+        NSString *stringRef = [attributeDict objectForKey:@"ref"];
+        NSString *stringLoc = [attributeDict objectForKey:@"loc"];
+        NSString *stringScale = [attributeDict objectForKey:@"scale"];
+        NSString *stringSkew = [attributeDict objectForKey:@"skew"];
+        NSString *stringPivot = [attributeDict objectForKey:@"pivot"];
+        NSString *stringAlpha = [attributeDict objectForKey:@"alpha"];
+        NSString *stringEase = [attributeDict objectForKey:@"ease"];
+        NSString *stringTween = [attributeDict objectForKey:@"tweened"];
+        
+        NSString *textureName = stringRef;
+        NSInteger duration = [stringDuration integerValue];
+        CGPoint position = CGPointZero;
+        CGPoint scale = CGPointMake(1.0, 1.0);
+        CGPoint skew = CGPointZero;
+        CGPoint pivot = CGPointZero;
+        CGFloat alpha = 1.0f;
+        NSInteger ease = 0;
+        BOOL tween = YES;
+        
+        if (stringAlpha != nil)
+        {
+            alpha = [stringAlpha floatValue];
+        }
+        
+        if (stringEase != nil)
+        {
+            ease = [stringEase integerValue];
+        }
+        
+        if (stringTween != nil)
+        {
+            tween = [stringTween boolValue];
+        }
+        
+        if (stringLoc != nil)
+        {
+            NSArray *components = [stringLoc componentsSeparatedByString:@","];
+            
+            if ([components count] >= 2)
+            {
+                NSString *stringX = components[0];
+                NSString *stringY = components[1];
+                CGFloat x = [stringX floatValue];
+                CGFloat y = [stringY floatValue];
+                
+                position = CGPointMake(x, y);
+            }
+        }
+        
+        if (stringScale != nil)
+        {
+            NSArray *components = [stringScale componentsSeparatedByString:@","];
+            
+            if ([components count] >= 2)
+            {
+                NSString *stringScaleX = components[0];
+                NSString *stringScaleY = components[1];
+                CGFloat scaleX = [stringScaleX floatValue];
+                CGFloat scaleY = [stringScaleY floatValue];
+                
+                scale = CGPointMake(scaleX, scaleY);
+            }
+        }
+        
+        if (stringSkew != nil)
+        {
+            NSArray *components = [stringSkew componentsSeparatedByString:@","];
+            
+            if ([components count] >= 2)
+            {
+                NSString *stringSkewX = components[0];
+                NSString *stringSkewY = components[1];
+                CGFloat skewX = [stringSkewX floatValue];
+                CGFloat skewY = [stringSkewY floatValue];
+                
+                skew = CGPointMake(skewX, skewY);
+            }
+        }
+        
+        if (stringPivot != nil)
+        {
+            NSArray *components = [stringPivot componentsSeparatedByString:@","];
+            
+            if ([components count] >= 2)
+            {
+                NSString *stringPivotX = components[0];
+                NSString *stringPivotY = components[1];
+                CGFloat pivotX = [stringPivotX floatValue];
+                CGFloat pivotY = [stringPivotY floatValue];
+                
+                pivot = CGPointMake(pivotX, pivotY);
+            }
+        }
+        
+        [flumpLayer addKeyframesWithTextureName:textureName duration:duration position:position scale:scale skew:skew pivot:pivot alpha:alpha ease:ease tween:tween];        
+    }
+    else if ([elementName isEqualToString:@"atlas"])
+    {
+        FLMPAtlas *flumpAtlas = [[FLMPAtlas alloc] init];
+        NSString *atlasImageName = [attributeDict objectForKey:@"file"];
+        
+        flumpAtlas.atlasImageName = atlasImageName;
+        
+        [self addAtlas:flumpAtlas];
+    }
+    else if ([elementName isEqualToString:@"texture"])
+    {
+        FLMPAtlas *flumpAtlas = [self.atlases lastObject];
+        
+        if (flumpAtlas != nil)
+        {
+            FLMPTexture *flumpTexture = [[FLMPTexture alloc] init];
+            NSString *textureName = [attributeDict objectForKey:@"name"];
+            NSString *stringOrigin = [attributeDict objectForKey:@"origin"];
+            NSString *stringRect = [attributeDict objectForKey:@"rect"];
+            
+            flumpTexture.textureName = textureName;
+            
+            [flumpAtlas addTexture:flumpTexture];
+            
+            if (stringOrigin != nil)
+            {
+                NSArray *components = [stringOrigin componentsSeparatedByString:@","];
+                
+                if ([components count] >= 2)
+                {
+                    NSString *stringX = [components objectAtIndex:0];
+                    NSString *stringY = [components objectAtIndex:1];
+
+                    CGFloat x = [stringX floatValue];
+                    CGFloat y = [stringY floatValue];
+                    
+                    flumpTexture.origin = CGPointMake(x, y);
+                }
+            }
+            
+            if (stringRect != nil)
+            {
+                NSArray *components = [stringRect componentsSeparatedByString:@","];
+                
+                if ([components count] >= 2)
+                {
+                    NSString *stringX = [components objectAtIndex:0];
+                    NSString *stringY = [components objectAtIndex:1];
+                    NSString *stringWidth = [components objectAtIndex:2];
+                    NSString *stringHeight = [components objectAtIndex:3];
+                    
+                    CGFloat x = [stringX floatValue];
+                    CGFloat y = [stringY floatValue];
+                    CGFloat width = [stringWidth floatValue];
+                    CGFloat height = [stringHeight floatValue];
+                    
+                    flumpTexture.rect = CGRectMake(x, y, width, height);
+                }
+            }
         }
     }
 }
 
--(void)loadMoviesFromMoviesXMLArray:(NSArray *)moviesXMLArray
+-(void)parserDidEndDocument:(NSXMLParser *)parser
 {
-    _moviesDictionary = [[NSMutableDictionary alloc] init];
-    
-    NSArray *array;
-    FLMPMovie *flumpMovie;
-    NSString *movieName;
-    NSArray *layersXMLArray;
-    FLMPLayer *flumpLayer;
-    BOOL addLayer;
-    NSString *layerName;
-    NSArray *keyframesXMLArray;
-    NSString *textureName;
-    NSInteger duration;
-    UIImageView *imageView;
-    FLMPKeyframe *keyframe;
-    
-    //movies
-    for (RXMLElement *movieXML in moviesXMLArray)
-    {
-        movieName = [[[movieXML attribute:@"name"] componentsSeparatedByString:@"/"] lastObject];
-        //printf("\n movieName: %s", [movieName UTF8String]);
-        
-        flumpMovie = [[FLMPMovie alloc] init];
-        flumpMovie.movieName = movieName;
-        flumpMovie.fps = [[movieXML attribute:@"frameRate"] floatValue];
-        
-        //layers
-        layersXMLArray = [movieXML children:@"layer"];
-        for (RXMLElement *layerXML in layersXMLArray)
-        {
-            layerName = [[[layerXML attribute:@"name"] componentsSeparatedByString:@"/"] lastObject];
-            //printf("\n layerName: %s", [layerName UTF8String]);
-            
-            flumpLayer = [[FLMPLayer alloc] init];
-            
-            addLayer = YES;
-            
-            //keyframes
-            keyframesXMLArray = [layerXML children:@"kf"];
-            for (RXMLElement *keyframeXML in keyframesXMLArray)
-            {
-                textureName = [keyframeXML attribute:@"ref"];
-                if (textureName)
-                {
-                    //printf("\n textureName: %s", [textureName UTF8String]);
-                    duration = [[keyframeXML attribute:@"duration"] intValue];
-                    imageView = [[UIImageView alloc] initWithImage:[_subTextures objectForKey:textureName]];
-                    //imageView.layer.shouldRasterize = YES;
-                    //imageView.layer.edgeAntialiasingMask = kCALayerLeftEdge | kCALayerRightEdge | kCALayerBottomEdge | kCALayerTopEdge;
-                    //imageView.clipsToBounds = NO;
-                    //imageView.layer.masksToBounds = NO;
-                    
-                    keyframe = [FLMPKeyframe keyframe];
-                    
-                    //location
-                    array = [[keyframeXML attribute:@"loc"] componentsSeparatedByString:@","];
-                    keyframe.x = ([array objectAtIndex:0]) ? [[array objectAtIndex:0] floatValue] : 0;
-                    keyframe.y = ([array objectAtIndex:1]) ? [[array objectAtIndex:1] floatValue] : 0;
-                    
-                    //skew
-                    array = [[keyframeXML attribute:@"skew"] componentsSeparatedByString:@","];
-                    keyframe.skewX = ([array objectAtIndex:0]) ? [[array objectAtIndex:0] floatValue] : 0;
-                    keyframe.skewY = ([array objectAtIndex:1]) ? [[array objectAtIndex:1] floatValue] : 0;
-                    
-                    //scale
-                    array = [[keyframeXML attribute:@"scale"] componentsSeparatedByString:@","];
-                    keyframe.scaleX = ([array objectAtIndex:0]) ? [[array objectAtIndex:0] floatValue] : 1;
-                    keyframe.scaleY = ([array objectAtIndex:1]) ? [[array objectAtIndex:1] floatValue] : 1;
-                    
-                    //pivot
-                    array = [[keyframeXML attribute:@"pivot"] componentsSeparatedByString:@","];
-                    keyframe.pivotX = ([array objectAtIndex:0]) ? [[array objectAtIndex:0] floatValue] : 0;
-                    keyframe.pivotY = ([array objectAtIndex:1]) ? [[array objectAtIndex:1] floatValue] : 0;
-                    
-                    if ([keyframeXML attribute:@"alpha"])
-                        keyframe.alpha = [[keyframeXML attribute:@"alpha"] floatValue];
-                    else
-                        keyframe.alpha = 1.0f;
-                    
-                    if ([keyframeXML attribute:@"ease"])
-                        keyframe.ease = [[keyframeXML attribute:@"ease"] integerValue];
-                    else
-                        keyframe.ease = 0;
-                    
-                    if ([keyframeXML attribute:@"tweened"] == nil ||
-                        [[keyframeXML attribute:@"tweened"] boolValue])
-                    {
-                        keyframe.tweened = YES;
-                    }
-                    else
-                    {
-                        keyframe.tweened = NO;
-                    }
-                    
-                    [flumpLayer addImage:imageView key:textureName];
-                    [flumpLayer addKeyframe:keyframe duration:duration imageKey:textureName];
-                }//end if textureName
-                else//else no texture name in XML
-                {
-                    addLayer = NO;
-                    //no texture...
-                    printf("\nWARNING: SXFlumpExport - No texture found on keyframe in layer with name: %s. Layer was not added.", [layerName UTF8String]);
-                }
-            }//end keyframes
-            
-            if (addLayer)
-                [flumpMovie addLayer:flumpLayer name:layerName];
-            
-        }//end layers
-        
-        [_moviesDictionary setValue:flumpMovie forKey:movieName];
-    }//end movies
+
 }
 
-#pragma mark public methods
+-(void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError
+{
+    printf("\n parseErrorOccurred: %s", [[parseError localizedDescription] UTF8String]);
+}
+
+-(void)parser:(NSXMLParser *)parser validationErrorOccurred:(NSError *)validationError
+{
+    printf("\n validationErrorOccurred: %s", [[validationError localizedDescription] UTF8String]);
+}
 
 @end

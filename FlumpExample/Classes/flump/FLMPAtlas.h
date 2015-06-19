@@ -12,16 +12,19 @@
 
 #import <UIKit/UIKit.h>
 
-@class FLMPLayer;
+@class FLMPTexture;
 
-@interface FLMPMovie : UIView{
+@interface FLMPAtlas : NSObject{
     
 }
 
-@property(nonatomic, strong) NSString *movieName;
-@property(nonatomic, strong) NSMutableArray *layers;
-@property(nonatomic, assign) CGFloat fps;
+@property(nonatomic, strong) NSString *atlasImageName;
+@property(nonatomic, strong) UIImage *atlas;
+@property(nonatomic, strong) NSMutableDictionary *textures;
+@property(nonatomic, strong) NSMutableDictionary *cachedLocalImages;
 
--(void)addLayer:(FLMPLayer *)layer;
+-(void)addTexture:(FLMPTexture *)texture;
+-(BOOL)containsTextureWithTextureName:(NSString *)textureName;
+-(UIImage *)getImageAtTextureName:(NSString *)textureName andCacheImageInLocalMemory:(BOOL)cacheImageInLocalMemory;
 
 @end

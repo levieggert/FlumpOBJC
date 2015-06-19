@@ -21,115 +21,71 @@
 -(void)dealloc
 {
     self.layerName = nil;
-    _imageView = nil;
-    _imagesDictionary = nil;
-    _keyframes = nil;
+    self.keyframes = nil;
 }
 
 #pragma mark private methods
 
--(void)addKeyframeInternal:(FLMPKeyframe *)flumpKeyFrame
+-(void)addKeyframe:(FLMPKeyframe *)keyframe
 {
-    if (!_keyframes)
+    if (keyframe == nil)
     {
-        _keyframes = [[NSMutableArray alloc] init];
-        _numFrames = 0;
+        return;
     }
     
-    [_keyframes addObject:flumpKeyFrame];
-    _numFrames += flumpKeyFrame.duration;
+    if (self.keyframes == nil)
+    {
+        self.keyframes = [[NSMutableArray alloc] init];
+    }
+    
+    [self.keyframes addObject:keyframe];
 }
 
 #pragma mark public methods
 
--(FLMPLayer *)copy
+-(NSInteger)getTotalFrames
 {
-    FLMPLayer *flumpLayer = [[FLMPLayer alloc] init];
-    
-    flumpLayer.layerName = self.layerName;
-    
-    UIImageView *imageView;
-    NSString *key;
-    
-    for (key in _imagesDictionary)
+    if (self.keyframes != nil)
     {
-        imageView = [_imagesDictionary objectForKey:key];
-        [flumpLayer addImage:[[UIImageView alloc] initWithImage:imageView.image] key:key];
+        return [self.keyframes count];
     }
     
-    FLMPKeyframe *keyFrame;
-    FLMPKeyframe *keyFrameCopy;
-    for (keyFrame in _keyframes)
-    {
-        keyFrameCopy = [keyFrame copy];
-        [flumpLayer addKeyframeInternal:keyFrameCopy];
-    }
-    
-    return flumpLayer;
+    return 0;
 }
 
--(void)addImage:(UIImageView *)imageView key:(NSString *)key
+-(void)addKeyframesWithTextureName:(NSString *)textureName duration:(NSInteger)duration position:(CGPoint)position scale:(CGPoint)scale skew:(CGPoint)skew pivot:(CGPoint)pivot alpha:(CGFloat)alpha ease:(NSInteger)ease tween:(BOOL)tween
 {
-    if (!_imagesDictionary)
-        _imagesDictionary = [[NSMutableDictionary alloc] init];
+    FLMPKeyframe *keyframe = nil;
     
-    if (![_imagesDictionary valueForKey:key])
-        [_imagesDictionary setValue:imageView forKey:key];
-}
-
--(void)addKeyframe:(FLMPKeyframe *)flumpKeyframe duration:(NSUInteger)duration imageKey:(NSString *)imageKey
-{
-    if (!_keyframes)
+    
+    if (self.keyframes != nil && [self.keyframes count] > 0)
     {
-        _keyframes = [[NSMutableArray alloc] init];
-        _numFrames = 0;
-    }
-    
-    flumpKeyframe.index = [_keyframes count];
-    flumpKeyframe.duration = duration;
-    flumpKeyframe.imageKey = imageKey;
-    FLMPKeyframe *copy;
-    NSUInteger i;
-    for (i = 0; i < duration; ++i)
-    {
-        copy = [flumpKeyframe copy];
-        copy.frame = [_keyframes count];
-        [_keyframes addObject:copy];
-    }
-    
-    _numFrames += duration;
-    
-    //check if we need to tween previous frame
-    NSInteger prevFrame = _numFrames - duration;
-    if (prevFrame > 0)
-    {
-        FLMPKeyframe *startKeyframe = [_keyframes objectAtIndex:(prevFrame-1)];
+        keyframe = [self.keyframes lastObject];
         
-        if (startKeyframe.tweened)
+        if (keyframe.tween)
         {
-            FLMPKeyframe *nextKeyframe = flumpKeyframe;
-            FLMPKeyframe *keyframe;
-            CGFloat interped = 0;
-            CGFloat ease;
-            NSUInteger prevDuration = startKeyframe.duration;
-            NSUInteger startFrame = prevFrame - prevDuration;
-            NSUInteger numFrames = startFrame + prevDuration;
-            for (i = (startFrame+1); i < numFrames; ++i)
+            NSInteger keyframeDuration = keyframe.duration;
+            NSInteger startFrame = [self.keyframes count] - keyframeDuration;
+            NSInteger endFrame = startFrame + keyframeDuration;
+            CGFloat interped = 0.0f;
+            NSInteger keyframeEase = 0;
+            
+            for (NSInteger i = startFrame; i < endFrame; ++i)
             {
-                keyframe = [_keyframes objectAtIndex:i];
+                keyframe = [self.keyframes objectAtIndex:i];
                 
-                interped = (float)(keyframe.frame - keyframe.index) / keyframe.duration;
-                ease = keyframe.ease;
+                interped = (CGFloat)(i - startFrame) / (CGFloat)keyframeDuration;
+                keyframeEase = keyframe.ease;
                 
-                if (ease != 0)
+                if (keyframeEase != 0)
                 {
-                    CGFloat t;
-                    if (ease < 0)
+                    CGFloat t = 0.0f;
+                    if (keyframeEase < 0)
                     {
                         // Ease in
                         CGFloat inv = 1 - interped;
                         t = 1 - inv * inv;
-                        ease = -ease;
+                        keyframeEase = keyframeEase * -1;
                     }
                     else
                     {
@@ -137,88 +93,138 @@
                         t = interped * interped;
                     }
                     
-                    interped = ease * t + (1 - ease) * interped;
+                    interped = (CGFloat)keyframeEase * t + (CGFloat)(1 - keyframeEase) * interped;                    
                 }
                 
-                keyframe.x = startKeyframe.x + (nextKeyframe.x - startKeyframe.x) * interped;
-                keyframe.y = startKeyframe.y + (nextKeyframe.y - startKeyframe.y) * interped;
-                keyframe.scaleX = startKeyframe.scaleX + (nextKeyframe.scaleX - startKeyframe.scaleX) * interped;
-                keyframe.scaleY = startKeyframe.scaleY + (nextKeyframe.scaleY - startKeyframe.scaleY) * interped;
-                keyframe.skewX = startKeyframe.skewX + (nextKeyframe.skewX - startKeyframe.skewX) * interped;
-                keyframe.skewY = startKeyframe.skewY + (nextKeyframe.skewY - startKeyframe.skewY) * interped;
-                keyframe.alpha = startKeyframe.alpha + (nextKeyframe.alpha - startKeyframe.alpha) * interped;
+                keyframe.position = CGPointMake(keyframe.position.x + (position.x - keyframe.position.x) * interped,
+                                                keyframe.position.y + (position.y - keyframe.position.y) * interped);
+                
+                keyframe.scale = CGPointMake(keyframe.scale.x + (scale.x - keyframe.scale.x) * interped,
+                                             keyframe.scale.y + (scale.y - keyframe.scale.y) * interped);
+                
+                keyframe.skew = CGPointMake(keyframe.skew.x + (skew.x - keyframe.skew.x) * interped,
+                                             keyframe.skew.y + (skew.y - keyframe.skew.y) * interped);
+                
+                keyframe.alpha = keyframe.alpha + (alpha - keyframe.alpha) * interped;
             }
         }
     }
+    
+    for (NSInteger i = 0; i < duration; ++i)
+    {
+        keyframe = [[FLMPKeyframe alloc] init];
+        
+        keyframe.textureName = textureName;
+        keyframe.duration = duration;
+        keyframe.position = CGPointMake(position.x, position.y);
+        keyframe.scale = CGPointMake(scale.x, scale.y);
+        keyframe.skew = CGPointMake(skew.x, skew.y);
+        keyframe.pivot = CGPointMake(pivot.x, pivot.y);
+        keyframe.alpha = alpha;
+        keyframe.ease = ease;
+        keyframe.tween = tween;
+        
+        [self addKeyframe:keyframe];
+    }
 }
 
--(void)updateFrame:(NSInteger)frameIndex
+-(UIImageView *)getImageViewAtFrame:(NSInteger)frame drawImage:(UIImage *)image
 {
-    FLMPKeyframe *keyframe = [_keyframes objectAtIndex:frameIndex];
+    if (image == nil)
+    {
+        return nil;
+    }
     
-    _imageView = [_imagesDictionary objectForKey:keyframe.imageKey];
-    
-    CALayer *layer = _imageView.layer;
-    UIImage *image = _imageView.image;
-    CGFloat width = image.size.width;
-    CGFloat height = image.size.height;
-    
-    CGFloat x = keyframe.x - 1.0f;
-    CGFloat y = keyframe.y - 1.0f;
-    CGFloat pivotX = keyframe.pivotX - 1.0f;
-    CGFloat pivotY = keyframe.pivotY - 1.0f;
-    CGFloat scaleX = keyframe.scaleX;
-    CGFloat scaleY = keyframe.scaleY;
-    CGFloat skewX = keyframe.skewX;
-    CGFloat skewY = keyframe.skewY;
-    
-    //pivot
-    layer.anchorPoint = CGPointMake((pivotX / width), (pivotY / height));
-    
-    //position
-    [layer setPosition:CGPointMake(x, y)];
-    
+    FLMPKeyframe *keyframe = nil;
+    UIImageView *imageView = nil;
+    CALayer *imageViewLayer = nil;
+    CGFloat x = 0.0f;
+    CGFloat y = 0.0f;
+    CGFloat scaleX = 0.0f;
+    CGFloat scaleY = 0.0f;
+    CGFloat skewX = 0.0f;
+    CGFloat skewY = 0.0f;
+    CGFloat pivotX = 0.0f;
+    CGFloat pivotY = 0.0f;
+    CGFloat alpha = 0.0f;
+    CGFloat imageWidth = 0.0f;
+    CGFloat imageHeight = 0.0f;
     CGAffineTransform transform = CGAffineTransformIdentity;
-    CGFloat a = 1.0f;
+    CGFloat a = 0.0f;
     CGFloat b = 0.0f;
     CGFloat c = 0.0f;
-    CGFloat d = 1.0f;
+    CGFloat d = 0.0f;
+    CGFloat sinX = 0.0f;
+    CGFloat cosX = 0.0f;
+    CGFloat sinY = 0.0f;
+    CGFloat cosY = 0.0f;
     
-    //scale
-    if (scaleX != 1)
+    if (self.keyframes != nil && frame < [self.keyframes count])
     {
-        a *= scaleX;
-        c *= scaleX;
-    }
-    
-    if (scaleY != 1)
-    {
-        b *= scaleY;
-        d *= scaleY;
-    }
-    
-    //skew
-    if (!(skewX == 0.0f && skewY == 0.0f))
-    {
-        CGFloat sinX = sinf(skewX);
-        CGFloat cosX = cosf(skewX);
-        CGFloat sinY = sinf(skewY);
-        CGFloat cosY = cosf(skewY);
+        keyframe = [self.keyframes objectAtIndex:frame];
         
-        a = a * cosY - b * sinX;
-        b = a * sinY + b * cosX;
-        c = c * cosY - d * sinX;
-        d = c * sinY + d * cosX;
+        imageView = [[UIImageView alloc] initWithImage:image];
+        
+        if (imageView != nil && image != nil)
+        {
+            imageViewLayer = imageView.layer;
+            imageWidth = image.size.width;
+            imageHeight = image.size.height;
+            
+            x = keyframe.position.x - 1.0;
+            y = keyframe.position.y - 1.0;
+            scaleX = keyframe.scale.x;
+            scaleY = keyframe.scale.y;
+            skewX = keyframe.skew.x;
+            skewY = keyframe.skew.y;
+            pivotX = keyframe.pivot.x - 1.0;
+            pivotY = keyframe.pivot.y - 1.0;
+            alpha = keyframe.alpha;
+            transform = CGAffineTransformIdentity;
+            a = 1.0;
+            b = 0.0;
+            c = 0.0;
+            d = 1.0;
+            
+            imageViewLayer.anchorPoint = CGPointMake(pivotX / imageWidth, pivotY / imageHeight);
+            imageViewLayer.position = CGPointMake(x, y);
+            
+            if (scaleX != 1)
+            {
+                a *= scaleX;
+                c *= scaleX;
+            }
+            
+            if (scaleY != 1)
+            {
+                b *= scaleY;
+                d *= scaleY;
+            }
+            
+            if (!(skewX == 0.0 && skewY == 0.0))
+            {
+                sinX = sinf(skewX);
+                cosX = cosf(skewX);
+                sinY = sinf(skewY);
+                cosY = cosf(skewY);
+                
+                a = a * cosY - b * sinX;
+                b = a * sinY + b * cosX;
+                c = c * cosY - d * sinX;
+                d = c * sinY + d * cosX;
+            }
+            
+            transform.a = a;
+            transform.b = b;
+            transform.c = c;
+            transform.d = d;
+                        
+            imageView.transform = transform;
+            imageViewLayer.opacity = alpha;
+        }
     }
     
-    transform.a = a;
-    transform.b = b;
-    transform.c = c;
-    transform.d = d;
-    
-    _imageView.transform = transform;
-    
-    layer.opacity = keyframe.alpha;
+    return imageView;
 }
 
 @end

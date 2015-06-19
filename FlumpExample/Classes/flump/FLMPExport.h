@@ -12,31 +12,21 @@
 
 #import <Foundation/Foundation.h>
 
-/**
- * This class handles parsing an xml file exported from the Flump application.  This class will contain
- * all FLMPMovies and textures that are found in the exported xml.  You can access your FLMPMovies here
- * by grabbing them from the moviesDictionary using the movie name.  Movie name can be found in the xml exported from flump
- * in the movie node.  Note that flump will export a project from the path it was in. /directory/file.  FLMPMovie class will remove
- * all paths in the xml file.  Only file names are used.  So /directory/file becomes file.
- *
- * @author Levi Eggert
- */
-@interface FLMPExport : NSObject{
+@class FLMPAtlas;
+@class FLMPMovie;
+@class FLMPView;
+
+@interface FLMPExport : NSObject<NSXMLParserDelegate>{
     
 }
 
-/** A dictionary containing all FLMPMovies which can be accessed by movie name found in the xml exported from flump.
- Note that the movie name will not use the entire path.  Only the file name is used. */
-@property(nonatomic, strong, readonly) NSMutableDictionary *moviesDictionary;
-/** This dictionary contains all textures (UIImages) found in the xml exported from flump in the texture node. Each texture is
- cut from the atlas it is in. FLMPLayers will access this dictionary so UIImageViews can be allocated for their animation sequence. */
-@property(nonatomic, strong, readonly) NSMutableDictionary *subTextures;
+@property(nonatomic, strong, readonly) NSXMLParser *flumpXMLParser;
+@property(nonatomic, strong, readonly) NSMutableArray *movies;
+@property(nonatomic, strong, readonly) NSMutableArray *atlases;
 
-/**
- * Static Function for allocating and parsing a new FLMPExport.
- *
- * @param       fileName        The xml file exported from the Flump application.
- */
-+(FLMPExport *)flumpExportWithXMLFileName:(NSString *)fileName;
+-(id)initWithFlumpXMLFileName:(NSString *)fileName;
+-(FLMPView *)getFlumpViewWithMovieName:(NSString *)movieName;
+-(FLMPMovie *)getFlumpMovieWithMovieName:(NSString *)movieName;
+-(FLMPAtlas *)getAtlasWithTextureName:(NSString *)textureName;
 
 @end

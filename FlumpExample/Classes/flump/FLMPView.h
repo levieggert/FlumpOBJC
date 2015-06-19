@@ -12,16 +12,41 @@
 
 #import <UIKit/UIKit.h>
 
-@class FLMPLayer;
+@class FLMPExport;
+@class FLMPMovie;
+@class FLMPView;
 
-@interface FLMPMovie : UIView{
+@protocol FLMPViewDelegate <NSObject>
+@optional
+-(void)flumpViewDidPlay:(FLMPView *)flumpView;
+-(void)flumpViewDidPause:(FLMPView *)flumpView;
+-(void)flumpViewDidStop:(FLMPView *)flumpView;
+-(void)flumpViewDidUpdateFrame:(FLMPView *)flumpView frame:(NSInteger)frame;
+-(void)flumpViewDidComplete:(FLMPView *)flumpView;
+@end
+
+@interface FLMPView : UIView{
     
 }
 
-@property(nonatomic, strong) NSString *movieName;
-@property(nonatomic, strong) NSMutableArray *layers;
+@property(nonatomic, weak) id<FLMPViewDelegate> delegate;
+@property(nonatomic, strong, readonly) FLMPExport *flumpExport;
+@property(nonatomic, weak, readonly) FLMPMovie *flumpMovie;
+@property(nonatomic, strong, readonly) NSTimer *updateFramesTimer;
+@property(nonatomic, readonly) NSInteger currentFrame;
+@property(nonatomic, readonly) BOOL isPlaying;
+@property(nonatomic, assign) BOOL loop;
 @property(nonatomic, assign) CGFloat fps;
 
--(void)addLayer:(FLMPLayer *)layer;
+-(id)initWithFlumpExport:(FLMPExport *)flumpExport movieName:(NSString *)movieName;
+
+-(NSInteger)getTotalFrames;
+-(void)decrementFrame;
+-(void)incrementFrame;
+-(void)drawFrame:(NSInteger)frame;
+-(void)clearFrame;
+-(void)play;
+-(void)pause;
+-(void)stop;
 
 @end

@@ -12,16 +12,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class FLMPLayer;
-
-@interface FLMPMovie : UIView{
+@interface FLMPTexture : NSObject{
     
 }
 
-@property(nonatomic, strong) NSString *movieName;
-@property(nonatomic, strong) NSMutableArray *layers;
-@property(nonatomic, assign) CGFloat fps;
-
--(void)addLayer:(FLMPLayer *)layer;
+@property(nonatomic, strong) NSString *textureName;
+@property(nonatomic, assign) CGPoint origin;
+@property(nonatomic, assign) CGRect rect;
 
 @end

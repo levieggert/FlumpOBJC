@@ -12,54 +12,18 @@
 
 #import <UIKit/UIKit.h>
 
-/**
- * Helper Class for setting up keyframes on a FLMPLayer.
- *
- * @author Levi Eggert
- */
 @interface FLMPKeyframe : NSObject{
     
 }
 
-/** Key into layers image dictionary for retrieving image to display on this keyframe. */
-@property(nonatomic, strong) NSString *imageKey;
-/** The duration is the number of frames this keyframe will run. */
+@property(nonatomic, strong) NSString *textureName;
 @property(nonatomic, assign) NSUInteger duration;
-/** Keyframe index relative to duration of keyframes. */
-@property(nonatomic, assign) NSUInteger index;
-/** The frame position of the keyframe. */
-@property(nonatomic, assign) NSUInteger frame;
-/** The x position to set the image on this keyframe. */
-@property(nonatomic, assign) CGFloat x;
-/** The y position to set the image on this keyframe. */
-@property(nonatomic, assign) CGFloat y;
-/** The scaleX to apply to the image on this frame. */
-@property(nonatomic, assign) CGFloat scaleX;
-/** The scaleY to apply to the image on this frame. */
-@property(nonatomic, assign) CGFloat scaleY;
-/** The skewX to apply to the image on this frame. */
-@property(nonatomic, assign) CGFloat skewX;
-/** The skewY to apply to the image on this frame. */
-@property(nonatomic, assign) CGFloat skewY;
-/** The pivotX to apply to the image on this frame. */
-@property(nonatomic, assign) CGFloat pivotX;
-/** The pivotY to apply to the image on this frame. */
-@property(nonatomic, assign) CGFloat pivotY;
-/** The alpha of the image at this keyframe. */
+@property(nonatomic, assign) CGPoint position;
+@property(nonatomic, assign) CGPoint scale;
+@property(nonatomic, assign) CGPoint skew;
+@property(nonatomic, assign) CGPoint pivot;
 @property(nonatomic, assign) CGFloat alpha;
-/** The ease to apply if their is a tween.  -1, 0, 1. */
 @property(nonatomic, assign) NSInteger ease;
-/** Boolean to check if this keyframe should be tweened. */
-@property(nonatomic, assign) BOOL tweened;
-
-/**
- * Class function for allocating a new keyframe.
- */
-+(FLMPKeyframe *)keyframe;
-
-/**
- * Returns a copy of the keyframe.
- */
--(FLMPKeyframe *)copy;
+@property(nonatomic, assign) BOOL tween;
 
 @end

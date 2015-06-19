@@ -8,20 +8,24 @@
 
 #import <UIKit/UIKit.h>
 
-@class FLMPExport;
-@class FLMPMovie;
+#import "FLMPView.h"
 
-@interface APPViewController : UIViewController{
+@class FLMPExport;
+
+@interface APPViewController : UIViewController<FLMPViewDelegate>{
     
 }
 
-@property(nonatomic, strong) IBOutlet UIView *view;
 @property(nonatomic, weak) IBOutlet UIView *flumpContainer;
 @property(nonatomic, weak) IBOutlet UIButton *btPlay;
 @property(nonatomic, weak) IBOutlet UIButton *btPause;
 @property(nonatomic, weak) IBOutlet UIButton *btStop;
+@property(nonatomic, weak) IBOutlet UIButton *btLoop;
+@property(nonatomic, weak) IBOutlet UILabel *lbFrame;
+@property(nonatomic, weak) IBOutlet UILabel *lbAnimationComplete;
 
-@property(nonatomic, strong) FLMPExport *flumpExport;
-@property(nonatomic, strong) FLMPMovie *flumpMovie;
+@property(nonatomic, weak) IBOutlet NSLayoutConstraint *lbAnimationCompleteTopConstraint;
+
+@property(nonatomic, strong) FLMPView *flumpView;
 
 @end

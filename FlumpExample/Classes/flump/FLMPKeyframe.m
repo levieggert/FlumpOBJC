@@ -12,42 +12,23 @@
     if (self) {
         // Initialization code here.
         
+        self.textureName = nil;
+        self.duration = 0;
+        self.position = CGPointZero;
+        self.scale = CGPointMake(1.0f, 1.0f);
+        self.skew = CGPointZero;
+        self.pivot = CGPointZero;
+        self.alpha = 1.0f;
+        self.ease = 0;
+        self.tween = NO;
     }
     
     return self;
 }
 
-+(FLMPKeyframe *)keyframe
-{
-    return [[FLMPKeyframe alloc] init];
-}
-
 -(void)dealloc
 {
-    self.imageKey = nil;
-}
-
--(FLMPKeyframe *)copy
-{
-    FLMPKeyframe *kf = [[FLMPKeyframe alloc] init];
-    
-    kf.imageKey = _imageKey;
-    kf.duration = _duration;
-    kf.index = _index;
-    kf.frame = _frame;
-    kf.x = _x;
-    kf.y = _y;
-    kf.scaleX = _scaleX;
-    kf.scaleY = _scaleY;
-    kf.skewX = _skewX;
-    kf.skewY = _skewY;
-    kf.pivotX = _pivotX;
-    kf.pivotY = _pivotY;
-    kf.alpha = _alpha;
-    kf.ease = _ease;
-    kf.tweened = _tweened;
-    
-    return kf;
+    self.textureName = nil;
 }
 
 @end
