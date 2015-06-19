@@ -14,9 +14,21 @@
 
 -(id)initWithFlumpXMLFileName:(NSString *)fileName
 {
+    return [self initWithFlumpXMLFileName:fileName atlasClass:nil];
+}
+
+-(id)initWithFlumpXMLFileName:(NSString *)fileName atlasClass:(Class)atlasClass
+{
     self = [super init];
     if (self) {
         // Initialization code here.
+        
+        if (atlasClass == nil)
+        {
+            atlasClass = [FLMPAtlas class];
+        }
+        
+        _AtlasClass = atlasClass;
         
         NSBundle *mainBundle = [NSBundle mainBundle];
         NSString *xmlPath = [mainBundle pathForResource:fileName ofType:@"xml"];
@@ -244,7 +256,7 @@
     }
     else if ([elementName isEqualToString:@"atlas"])
     {
-        FLMPAtlas *flumpAtlas = [[FLMPAtlas alloc] init];
+        FLMPAtlas *flumpAtlas = [[self.AtlasClass alloc] init];
         NSString *atlasImageName = [attributeDict objectForKey:@"file"];
         
         flumpAtlas.atlasImageName = atlasImageName;
@@ -264,7 +276,7 @@
             
             flumpTexture.textureName = textureName;
             
-            [flumpAtlas addTexture:flumpTexture];
+            [flumpAtlas addTexture:flumpTexture withTextureName:textureName];
             
             if (stringOrigin != nil)
             {

@@ -23,9 +23,11 @@
 @property(nonatomic, strong, readonly) NSXMLParser *flumpXMLParser;
 @property(nonatomic, strong, readonly) NSMutableDictionary *movies;
 @property(nonatomic, strong, readonly) NSMutableArray *atlases;
+@property(nonatomic, readonly) Class AtlasClass;
 @property(nonatomic, strong, readonly) NSString *lastAddedMovieName;
 
 -(id)initWithFlumpXMLFileName:(NSString *)fileName;
+-(id)initWithFlumpXMLFileName:(NSString *)fileName atlasClass:(Class)atlasClass;
 -(FLMPView *)getFlumpViewWithMovieName:(NSString *)movieName;
 -(FLMPMovie *)getFlumpMovieWithMovieName:(NSString *)movieName;
 -(FLMPAtlas *)getAtlasWithTextureName:(NSString *)textureName;

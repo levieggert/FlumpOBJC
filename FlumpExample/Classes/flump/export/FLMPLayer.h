@@ -23,6 +23,6 @@
 
 -(NSInteger)getTotalFrames;
 -(void)addKeyframesWithTextureName:(NSString *)textureName duration:(NSInteger)duration position:(CGPoint)position scale:(CGPoint)scale skew:(CGPoint)skew pivot:(CGPoint)pivot alpha:(CGFloat)alpha ease:(NSInteger)ease tween:(BOOL)tween;
--(UIImageView *)getImageViewAtFrame:(NSInteger)frame drawImage:(UIImage *)image;
+-(CGAffineTransform)getTransformAtFrame:(NSInteger)frame;
 
 @end

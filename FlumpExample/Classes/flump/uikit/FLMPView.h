@@ -34,13 +34,13 @@
 @property(nonatomic, strong, readonly) NSString *movieName;
 @property(nonatomic, strong, readonly) NSTimer *updateFramesTimer;
 @property(nonatomic, readonly) NSInteger currentFrame;
+@property(nonatomic, readonly) NSInteger totalFrames;
 @property(nonatomic, readonly) BOOL isPlaying;
 @property(nonatomic, assign) BOOL loop;
 @property(nonatomic, assign) CGFloat fps;
 
 -(id)initWithFlumpExport:(FLMPExport *)flumpExport movieName:(NSString *)movieName;
 
--(NSInteger)getTotalFrames;
 -(void)decrementFrame;
 -(void)incrementFrame;
 -(void)drawFrame:(NSInteger)frame;

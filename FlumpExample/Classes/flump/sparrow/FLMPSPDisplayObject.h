@@ -12,16 +12,29 @@
 
 #import <UIKit/UIKit.h>
 
-@class FLMPTexture;
+#import "SPDisplayObjectContainer.h"
+#import "SPAnimatable.h"
 
-@interface FLMPAtlas : NSObject{
+@class FLMPExport;
+
+@interface FLMPSPDisplayObject : SPDisplayObjectContainer<SPAnimatable>{
     
 }
 
-@property(nonatomic, strong) NSString *atlasImageName;
-@property(nonatomic, strong) NSMutableDictionary *textures;
+@property(nonatomic, strong, readonly) FLMPExport *flumpExport;
+@property(nonatomic, strong, readonly) NSString *movieName;
+@property(nonatomic, readonly) NSInteger currentFrame;
+@property(nonatomic, readonly) NSInteger totalFrames;
+@property(nonatomic, readonly) BOOL isPlaying;
+@property(nonatomic, assign) BOOL loop;
+@property(nonatomic, assign) CGFloat fps;
 
--(void)addTexture:(FLMPTexture *)texture withTextureName:(NSString *)textureName;
--(BOOL)containsTextureWithTextureName:(NSString *)textureName;
+-(id)initWithFlumpExport:(FLMPExport *)flumpExport movieName:(NSString *)movieName;
+
+-(void)drawFrame:(NSInteger)frame;
+-(void)clearFrame;
+-(void)play;
+-(void)pause;
+-(void)stop;
 
 @end

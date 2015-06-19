@@ -7,7 +7,7 @@
 #import "FLMPMovie.h"
 #import "FLMPLayer.h"
 #import "FLMPKeyframe.h"
-#import "FLMPAtlas.h"
+#import "FLMPUIAtlas.h"
 
 @implementation FLMPView
 
@@ -23,16 +23,20 @@
         //flumpExport
         _flumpExport = flumpExport;
         
+        //movieName
+        _movieName = movieName;
+        
         //isPlaying
         _isPlaying = NO;
         
         //loop
         self.loop = YES;
         
+        //totalFrames
+        _totalFrames = [self getTotalFrames];
+        
         if (flumpExport != nil && movieName != nil)
-        {
-            _movieName = movieName;
-            
+        {            
             FLMPMovie *flumpMovie = [flumpExport getFlumpMovieWithMovieName:movieName];
             
             self.fps = flumpMovie.fps;
@@ -53,18 +57,6 @@
 }
 
 #pragma mark private methods
-
--(NSInteger)clampFrame:(NSInteger)frame
-{
-    if (frame < 0 || frame >= [self getTotalFrames])
-    {
-        return 0;
-    }
-    
-    return frame;
-}
-
-#pragma mark public methods
 
 -(NSInteger)getTotalFrames
 {
@@ -90,6 +82,18 @@
     return totalFrames;
 }
 
+-(NSInteger)clampFrame:(NSInteger)frame
+{
+    if (frame < 0 || frame >= self.totalFrames)
+    {
+        return 0;
+    }
+    
+    return frame;
+}
+
+#pragma mark public methods
+
 -(void)decrementFrame
 {
     NSInteger frame = self.currentFrame - 1;
@@ -101,7 +105,7 @@
 {
     NSInteger frame = self.currentFrame + 1;
     
-    if (frame < [self getTotalFrames])
+    if (frame < self.totalFrames)
     {
         [self drawFrame:frame];
     }
@@ -141,12 +145,13 @@
     
     if (layers != nil)
     {
-        FLMPAtlas *atlas = nil;
+        FLMPUIAtlas *atlas = nil;
         NSArray *keyframes = nil;
         FLMPKeyframe *keyframe = nil;
         NSString *keyframeTextureName = nil;
         UIImageView *imageView = nil;
         UIImage *image = nil;
+        CGAffineTransform transform;
         
         for(FLMPLayer *layer in layers)
         {
@@ -157,17 +162,24 @@
                 keyframe = [keyframes objectAtIndex:self.currentFrame];
                 keyframeTextureName = keyframe.textureName;
                 
-                atlas = [self.flumpExport getAtlasWithTextureName:keyframeTextureName];
+                atlas = (FLMPUIAtlas *)[self.flumpExport getAtlasWithTextureName:keyframeTextureName];
                 
                 if (atlas != nil)
                 {
                     image = [atlas getImageAtTextureName:keyframeTextureName andCacheImageInLocalMemory:YES];
-                    imageView = [layer getImageViewAtFrame:self.currentFrame drawImage:image];
                     
-                    if (imageView != nil)
-                    {
-                        [self addSubview:imageView];
-                    }
+                    transform = [layer getTransformAtFrame:self.currentFrame];
+                    
+                    imageView = [[UIImageView alloc] initWithImage:image];
+                    
+                    imageView.layer.anchorPoint = CGPointMake(keyframe.pivot.x / image.size.width, keyframe.pivot.y / image.size.height);
+                    imageView.layer.position = CGPointMake(transform.tx, transform.ty);
+                    transform.tx = 0.0f;
+                    transform.ty = 0.0f;
+                    imageView.transform = transform;
+                    imageView.alpha = keyframe.alpha;
+                    
+                    [self addSubview:imageView];
                 }
             }
         }

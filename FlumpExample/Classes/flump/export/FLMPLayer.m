@@ -128,16 +128,10 @@
     }
 }
 
--(UIImageView *)getImageViewAtFrame:(NSInteger)frame drawImage:(UIImage *)image
+-(CGAffineTransform)getTransformAtFrame:(NSInteger)frame
 {
-    if (image == nil)
-    {
-        return nil;
-    }
-    
     FLMPKeyframe *keyframe = nil;
-    UIImageView *imageView = nil;
-    CALayer *imageViewLayer = nil;
+    CGAffineTransform transform = CGAffineTransformIdentity;
     CGFloat x = 0.0f;
     CGFloat y = 0.0f;
     CGFloat scaleX = 0.0f;
@@ -146,10 +140,6 @@
     CGFloat skewY = 0.0f;
     CGFloat pivotX = 0.0f;
     CGFloat pivotY = 0.0f;
-    CGFloat alpha = 0.0f;
-    CGFloat imageWidth = 0.0f;
-    CGFloat imageHeight = 0.0f;
-    CGAffineTransform transform = CGAffineTransformIdentity;
     CGFloat a = 0.0f;
     CGFloat b = 0.0f;
     CGFloat c = 0.0f;
@@ -163,68 +153,54 @@
     {
         keyframe = [self.keyframes objectAtIndex:frame];
         
-        imageView = [[UIImageView alloc] initWithImage:image];
+        x = keyframe.position.x - 1.0;
+        y = keyframe.position.y - 1.0;
+        scaleX = keyframe.scale.x;
+        scaleY = keyframe.scale.y;
+        skewX = keyframe.skew.x;
+        skewY = keyframe.skew.y;
+        pivotX = keyframe.pivot.x - 1.0;
+        pivotY = keyframe.pivot.y - 1.0;
         
-        if (imageView != nil && image != nil)
+        a = 1.0;
+        b = 0.0;
+        c = 0.0;
+        d = 1.0;
+        
+        if (scaleX != 1)
         {
-            imageViewLayer = imageView.layer;
-            imageWidth = image.size.width;
-            imageHeight = image.size.height;
-            
-            x = keyframe.position.x - 1.0;
-            y = keyframe.position.y - 1.0;
-            scaleX = keyframe.scale.x;
-            scaleY = keyframe.scale.y;
-            skewX = keyframe.skew.x;
-            skewY = keyframe.skew.y;
-            pivotX = keyframe.pivot.x - 1.0;
-            pivotY = keyframe.pivot.y - 1.0;
-            alpha = keyframe.alpha;
-            transform = CGAffineTransformIdentity;
-            a = 1.0;
-            b = 0.0;
-            c = 0.0;
-            d = 1.0;
-            
-            imageViewLayer.anchorPoint = CGPointMake(pivotX / imageWidth, pivotY / imageHeight);
-            imageViewLayer.position = CGPointMake(x, y);
-            
-            if (scaleX != 1)
-            {
-                a *= scaleX;
-                c *= scaleX;
-            }
-            
-            if (scaleY != 1)
-            {
-                b *= scaleY;
-                d *= scaleY;
-            }
-            
-            if (!(skewX == 0.0 && skewY == 0.0))
-            {
-                sinX = sinf(skewX);
-                cosX = cosf(skewX);
-                sinY = sinf(skewY);
-                cosY = cosf(skewY);
-                
-                a = a * cosY - b * sinX;
-                b = a * sinY + b * cosX;
-                c = c * cosY - d * sinX;
-                d = c * sinY + d * cosX;
-            }
-            
-            transform.a = a;
-            transform.b = b;
-            transform.c = c;
-            transform.d = d;
-                        
-            imageView.transform = transform;
-            imageViewLayer.opacity = alpha;
+            a *= scaleX;
+            c *= scaleX;
         }
+        
+        if (scaleY != 1)
+        {
+            b *= scaleY;
+            d *= scaleY;
+        }
+        
+        if (!(skewX == 0.0 && skewY == 0.0))
+        {
+            sinX = sinf(skewX);
+            cosX = cosf(skewX);
+            sinY = sinf(skewY);
+            cosY = cosf(skewY);
+            
+            a = a * cosY - b * sinX;
+            b = a * sinY + b * cosX;
+            c = c * cosY - d * sinX;
+            d = c * sinY + d * cosX;
+        }
+        
+        transform.tx = x;
+        transform.ty = y;
+        transform.a = a;
+        transform.b = b;
+        transform.c = c;
+        transform.d = d;
     }
     
-    return imageView;
+    return transform;
 }
 
 @end

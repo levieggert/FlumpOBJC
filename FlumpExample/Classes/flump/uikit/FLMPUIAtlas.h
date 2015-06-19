@@ -10,18 +10,15 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
+#import "FLMPAtlas.h"
 
-@class FLMPTexture;
-
-@interface FLMPAtlas : NSObject{
+@interface FLMPUIAtlas : FLMPAtlas{
     
 }
 
-@property(nonatomic, strong) NSString *atlasImageName;
-@property(nonatomic, strong) NSMutableDictionary *textures;
+@property(nonatomic, strong) UIImage *atlas;
+@property(nonatomic, strong) NSMutableDictionary *cachedLocalImages;
 
--(void)addTexture:(FLMPTexture *)texture withTextureName:(NSString *)textureName;
--(BOOL)containsTextureWithTextureName:(NSString *)textureName;
+-(UIImage *)getImageAtTextureName:(NSString *)textureName andCacheImageInLocalMemory:(BOOL)cacheImageInLocalMemory;
 
 @end

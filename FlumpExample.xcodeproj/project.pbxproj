@@ -17,6 +17,10 @@
 		458B4EE61B34B26A007CBDD2 /* FLMPMovie.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EDF1B34B26A007CBDD2 /* FLMPMovie.m */; };
 		458B4EE71B34B26A007CBDD2 /* FLMPTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EE11B34B26A007CBDD2 /* FLMPTexture.m */; };
 		458B4EEC1B34B27D007CBDD2 /* FLMPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EEB1B34B27D007CBDD2 /* FLMPView.m */; };
+		458B4EEF1B34BC41007CBDD2 /* FLMPUIAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EEE1B34BC41007CBDD2 /* FLMPUIAtlas.m */; };
+		458B4EF21B34C03F007CBDD2 /* APPSparrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EF11B34C03F007CBDD2 /* APPSparrowViewController.m */; };
+		458B4EF51B34C795007CBDD2 /* FLMPSPAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EF41B34C795007CBDD2 /* FLMPSPAtlas.m */; };
+		458B4EF81B34CAB0007CBDD2 /* FLMPSPDisplayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EF71B34CAB0007CBDD2 /* FLMPSPDisplayObject.m */; };
 		45999B031AE344B100EA1BEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B021AE344B100EA1BEC /* main.m */; };
 		45999B0E1AE344B100EA1BEC /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45999B0D1AE344B100EA1BEC /* Images.xcassets */; };
 		45999B1D1AE344B100EA1BEC /* FlumpExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B1C1AE344B100EA1BEC /* FlumpExampleTests.m */; };
@@ -55,6 +59,14 @@
 		458B4EE11B34B26A007CBDD2 /* FLMPTexture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPTexture.m; sourceTree = "<group>"; };
 		458B4EEA1B34B27D007CBDD2 /* FLMPView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPView.h; sourceTree = "<group>"; };
 		458B4EEB1B34B27D007CBDD2 /* FLMPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPView.m; sourceTree = "<group>"; };
+		458B4EED1B34BC41007CBDD2 /* FLMPUIAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPUIAtlas.h; sourceTree = "<group>"; };
+		458B4EEE1B34BC41007CBDD2 /* FLMPUIAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPUIAtlas.m; sourceTree = "<group>"; };
+		458B4EF01B34C03F007CBDD2 /* APPSparrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPSparrowViewController.h; sourceTree = "<group>"; };
+		458B4EF11B34C03F007CBDD2 /* APPSparrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPSparrowViewController.m; sourceTree = "<group>"; };
+		458B4EF31B34C795007CBDD2 /* FLMPSPAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPSPAtlas.h; sourceTree = "<group>"; };
+		458B4EF41B34C795007CBDD2 /* FLMPSPAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPSPAtlas.m; sourceTree = "<group>"; };
+		458B4EF61B34CAB0007CBDD2 /* FLMPSPDisplayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPSPDisplayObject.h; sourceTree = "<group>"; };
+		458B4EF71B34CAB0007CBDD2 /* FLMPSPDisplayObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPSPDisplayObject.m; sourceTree = "<group>"; };
 		45999AFD1AE344B100EA1BEC /* FlumpExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlumpExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45999B011AE344B100EA1BEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45999B021AE344B100EA1BEC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -114,6 +126,10 @@
 		458B4EE81B34B27D007CBDD2 /* sparrow */ = {
 			isa = PBXGroup;
 			children = (
+				458B4EF31B34C795007CBDD2 /* FLMPSPAtlas.h */,
+				458B4EF41B34C795007CBDD2 /* FLMPSPAtlas.m */,
+				458B4EF61B34CAB0007CBDD2 /* FLMPSPDisplayObject.h */,
+				458B4EF71B34CAB0007CBDD2 /* FLMPSPDisplayObject.m */,
 			);
 			path = sparrow;
 			sourceTree = "<group>";
@@ -121,6 +137,8 @@
 		458B4EE91B34B27D007CBDD2 /* uikit */ = {
 			isa = PBXGroup;
 			children = (
+				458B4EED1B34BC41007CBDD2 /* FLMPUIAtlas.h */,
+				458B4EEE1B34BC41007CBDD2 /* FLMPUIAtlas.m */,
 				458B4EEA1B34B27D007CBDD2 /* FLMPView.h */,
 				458B4EEB1B34B27D007CBDD2 /* FLMPView.m */,
 			);
@@ -200,6 +218,8 @@
 			children = (
 				45999B341AE3451800EA1BEC /* AppDelegate.h */,
 				45999B351AE3451800EA1BEC /* AppDelegate.m */,
+				458B4EF01B34C03F007CBDD2 /* APPSparrowViewController.h */,
+				458B4EF11B34C03F007CBDD2 /* APPSparrowViewController.m */,
 				45999B361AE3451800EA1BEC /* APPViewController.h */,
 				45999B371AE3451800EA1BEC /* APPViewController.m */,
 				45999B381AE3451800EA1BEC /* APPViewController.xib */,
@@ -373,9 +393,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				458B4EF51B34C795007CBDD2 /* FLMPSPAtlas.m in Sources */,
 				458B4EE61B34B26A007CBDD2 /* FLMPMovie.m in Sources */,
 				458B4EE71B34B26A007CBDD2 /* FLMPTexture.m in Sources */,
 				45999B4F1AE3451800EA1BEC /* APPViewController.m in Sources */,
+				458B4EF21B34C03F007CBDD2 /* APPSparrowViewController.m in Sources */,
+				458B4EF81B34CAB0007CBDD2 /* FLMPSPDisplayObject.m in Sources */,
 				458B4EE51B34B26A007CBDD2 /* FLMPLayer.m in Sources */,
 				45999B4E1AE3451800EA1BEC /* AppDelegate.m in Sources */,
 				458B4EE21B34B26A007CBDD2 /* FLMPAtlas.m in Sources */,
@@ -383,6 +406,7 @@
 				458B4EEC1B34B27D007CBDD2 /* FLMPView.m in Sources */,
 				458B4EE41B34B26A007CBDD2 /* FLMPKeyframe.m in Sources */,
 				45999B031AE344B100EA1BEC /* main.m in Sources */,
+				458B4EEF1B34BC41007CBDD2 /* FLMPUIAtlas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
