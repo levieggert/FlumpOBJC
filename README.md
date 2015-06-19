@@ -67,12 +67,11 @@ Notes using Flash
 Creating a FLMPView
 ----------------
 
-1. Create a FLMPExport with an exported Flump XML file.
-
+```
 FLMPExport *flumpExport = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3"];
-
-2. Create a FLMPView with your flumpExport along with a movieName found in the export XML.
-
 FLMPView *flumpView = [[FLMPView alloc] initWithFlumpExport:flumpExport movieName:@"test3_movie"];
 
-That's it.  Just add your flumpView to your view controller and play.
+[self.view addSubview:flumpView];
+
+[flumpView play];
+```
