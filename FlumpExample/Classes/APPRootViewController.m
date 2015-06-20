@@ -41,7 +41,6 @@ static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
     //uiViewController
     self.uiViewController = [[APPUIViewController alloc] init];
     [self.view insertSubview:self.uiViewController.view aboveSubview:self.backgroundImage];
-    self.uiViewController.flumpViewUIKit.delegate = self;
     
     //sparrowViewController
     self.sparrowViewController = [[APPSparrowViewController alloc] init];
@@ -256,6 +255,9 @@ static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
             
             [self.backgroundImage setImage:[UIImage imageNamed:ImageNameXcode]];
             
+            self.uiViewController.flumpViewUIKit.delegate = self;
+            self.sparrowViewController.flumpSPDisplayObject.delegate = nil;
+            
             break;
         }
         case FlumpExampleTypeSparrow:
@@ -267,6 +269,9 @@ static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
             self.sparrowViewController.view.hidden = NO;
             
             [self.backgroundImage setImage:[UIImage imageNamed:ImageNameSparrow]];
+            
+            self.uiViewController.flumpViewUIKit.delegate = nil;
+            self.sparrowViewController.flumpSPDisplayObject.delegate = self;
             
             break;
         }
@@ -317,6 +322,43 @@ static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
 }
 
 -(void)flumpViewDidComplete:(FLMPView *)flumpView
+{
+    [self setLbAnimationCompleteHidden:NO withAnimation:YES];
+}
+
+#pragma mark FLMPSPDisplayObjectDelegate
+
+-(void)flumpDisplayObjectDidPlay:(FLMPSPDisplayObject *)flumpDisplayObject
+{
+    [self setFlumpButtonControl:self.btPlay enabled:YES];
+    [self setFlumpButtonControl:self.btPause enabled:NO];
+    [self setFlumpButtonControl:self.btStop enabled:NO];
+    
+    [self setLbAnimationCompleteHidden:YES withAnimation:YES];
+}
+
+-(void)flumpDisplayObjectDidPause:(FLMPSPDisplayObject *)flumpDisplayObject
+{
+    [self setFlumpButtonControl:self.btPlay enabled:NO];
+    [self setFlumpButtonControl:self.btPause enabled:YES];
+    [self setFlumpButtonControl:self.btStop enabled:NO];
+}
+
+-(void)flumpDisplayObjectDidStop:(FLMPSPDisplayObject *)flumpDisplayObject
+{
+    [self setFlumpButtonControl:self.btPlay enabled:NO];
+    [self setFlumpButtonControl:self.btPause enabled:NO];
+    [self setFlumpButtonControl:self.btStop enabled:YES];
+    
+    [self setLbAnimationCompleteHidden:YES withAnimation:YES];
+}
+
+-(void)flumpDisplayObjectDidUpdateFrame:(FLMPSPDisplayObject *)flumpDisplayObject frame:(NSInteger)frame
+{
+    self.lbFrameCount = frame;
+}
+
+-(void)flumpDisplayObjectDidComplete:(FLMPSPDisplayObject *)flumpDisplayObject
 {
     [self setLbAnimationCompleteHidden:NO withAnimation:YES];
 }

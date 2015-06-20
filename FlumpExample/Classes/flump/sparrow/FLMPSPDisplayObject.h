@@ -16,13 +16,25 @@
 #import "SPAnimatable.h"
 
 @class FLMPExport;
+@class FLMPSPDisplayObject;
+
+@protocol FLMPSPDisplayObjectDelegate <NSObject>
+@optional
+-(void)flumpDisplayObjectDidPlay:(FLMPSPDisplayObject *)flumpDisplayObject;
+-(void)flumpDisplayObjectDidPause:(FLMPSPDisplayObject *)flumpDisplayObject;
+-(void)flumpDisplayObjectDidStop:(FLMPSPDisplayObject *)flumpDisplayObject;
+-(void)flumpDisplayObjectDidUpdateFrame:(FLMPSPDisplayObject *)flumpDisplayObject frame:(NSInteger)frame;
+-(void)flumpDisplayObjectDidComplete:(FLMPSPDisplayObject *)flumpDisplayObject;
+@end
 
 @interface FLMPSPDisplayObject : SPDisplayObjectContainer<SPAnimatable>{
     
 }
 
+@property(nonatomic, weak) id<FLMPSPDisplayObjectDelegate> delegate;
 @property(nonatomic, strong, readonly) FLMPExport *flumpExport;
 @property(nonatomic, strong, readonly) NSString *movieName;
+@property(nonatomic, readonly) NSInteger prevFrame;
 @property(nonatomic, readonly) NSInteger currentFrame;
 @property(nonatomic, readonly) NSInteger totalFrames;
 @property(nonatomic, readonly) BOOL isPlaying;

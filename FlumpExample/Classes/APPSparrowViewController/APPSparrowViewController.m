@@ -53,8 +53,8 @@
     
     //flumpSPDisplayObject
     self.flumpSPDisplayObject = [[FLMPSPDisplayObject alloc] initWithFlumpExport:flumpExportSparrow movieName:@"test3_movie"];
-    self.flumpSPDisplayObject.x = 10.0f;
-    self.flumpSPDisplayObject.y = 64.0f;
+    self.flumpSPDisplayObject.x = 30.0f;
+    self.flumpSPDisplayObject.y = 95.0f;
     
     SPStage *stage = Sparrow.stage;
     [stage addChild:self.flumpSPDisplayObject];

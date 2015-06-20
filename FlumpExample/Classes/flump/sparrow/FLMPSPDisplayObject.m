@@ -106,6 +106,11 @@
     
     [self clearFrame];
     
+    if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidUpdateFrame:frame:)])
+    {
+        [self.delegate flumpDisplayObjectDidUpdateFrame:self frame:self.currentFrame];
+    }
+    
     FLMPMovie *flumpMovie = [self.flumpExport getFlumpMovieWithMovieName:self.movieName];
     NSArray *layers = flumpMovie.layers;
     
@@ -164,6 +169,11 @@
         
         SPJuggler *juggler = Sparrow.juggler;
         [juggler addObject:self];
+        
+        if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidPlay:)])
+        {
+            [self.delegate flumpDisplayObjectDidPlay:self];
+        }
     }
 }
 
@@ -175,6 +185,11 @@
         
         SPJuggler *juggler = Sparrow.juggler;
         [juggler removeObject:self];
+        
+        if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidPause:)])
+        {
+            [self.delegate flumpDisplayObjectDidPause:self];
+        }
     }
 }
 
@@ -189,7 +204,13 @@
     }
     
     mElapsedTime = 0.0f;
+    _prevFrame = 0;
     [self drawFrame:0];
+    
+    if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidStop:)])
+    {
+        [self.delegate flumpDisplayObjectDidStop:self];
+    }
 }
 
 #pragma mark SPAnimatable
@@ -199,14 +220,25 @@
     mElapsedTime += seconds;
     
     NSInteger frame = (int)(mElapsedTime / mFrameDuration) % self.totalFrames;
-    NSInteger lastFrame = self.totalFrames - 1;
+    NSInteger endFrame = self.totalFrames - 1;
     
-    [self drawFrame:frame];
+    _prevFrame = self.currentFrame;
     
-    if (frame == lastFrame && !self.loop)
+    if ((self.prevFrame == endFrame || frame == endFrame) && !self.loop)
     {
         [self pause];
+        
+        [self drawFrame:endFrame];
+        
+        if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidComplete:)])
+        {
+            [self.delegate flumpDisplayObjectDidComplete:self];
+        }
+        
+        return;
     }
+    
+    [self drawFrame:frame];
 }
 
 @end
