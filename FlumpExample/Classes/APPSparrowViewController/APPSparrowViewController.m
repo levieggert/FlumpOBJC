@@ -8,7 +8,13 @@
 
 #import "APPSparrowViewController.h"
 
+#import "FLMPExport.h"
+#import "FLMPSPAtlas.h"
+#import "FLMPSPDisplayObject.h"
+
+#import "Sparrow.h"
 #import "SPStage.h"
+#import "SPStage+Transparency.h"
 #import "SPSprite.h"
 
 @implementation APPSparrowViewController
@@ -24,7 +30,7 @@
 
 -(void)dealloc
 {
-    
+    self.flumpSPDisplayObject = nil;
 }
 
 -(void)viewDidLoad
@@ -32,14 +38,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
         
-    self.view.backgroundColor = [UIColor blackColor];
-    self.stage.color = 0xFFFFFF;//0x222222;
+    self.view.backgroundColor = [UIColor clearColor];
+    self.stage.color = 0x000000;
+    [self.stage setTransparent:YES];
     
     [super startWithRoot:[SPSprite class] supportHighResolutions:NO doubleOnPad:NO];
     self.multitouchEnabled = YES;
     self.preferredFramesPerSecond = 60;
     self.paused = NO;
     self.showStats = NO;
+    
+    //flumpExportSparrow
+    FLMPExport *flumpExportSparrow = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3" atlasClass:[FLMPSPAtlas class]];
+    
+    //flumpSPDisplayObject
+    self.flumpSPDisplayObject = [[FLMPSPDisplayObject alloc] initWithFlumpExport:flumpExportSparrow movieName:@"test3_movie"];
+    self.flumpSPDisplayObject.x = 10.0f;
+    self.flumpSPDisplayObject.y = 64.0f;
+    
+    SPStage *stage = Sparrow.stage;
+    [stage addChild:self.flumpSPDisplayObject];
 }
 
 -(void)didReceiveMemoryWarning

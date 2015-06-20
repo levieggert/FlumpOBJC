@@ -5,19 +5,19 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APPViewController">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="APPRootViewController">
             <connections>
-                <outlet property="btFlumpSparrowExample" destination="lBw-aq-XqF" id="dim-aC-TIo"/>
-                <outlet property="btFlumpUIKitExample" destination="XiJ-Z7-Nom" id="wnu-GQ-VHO"/>
-                <outlet property="btLoop" destination="icG-IP-Gyb" id="TYP-7K-w4Z"/>
-                <outlet property="btPause" destination="eef-Vv-Kq2" id="05T-el-PiA"/>
-                <outlet property="btPlay" destination="Y8q-pr-eX1" id="49h-gw-V9v"/>
-                <outlet property="btStop" destination="ALh-OL-Htf" id="MbM-pD-bxp"/>
-                <outlet property="flumpContainer" destination="f2Z-mM-b4W" id="Xgf-Zz-Agf"/>
-                <outlet property="lbAnimationComplete" destination="Co2-JW-cei" id="qM1-WT-KFb"/>
-                <outlet property="lbAnimationCompleteTopConstraint" destination="wfP-c8-J76" id="1ch-2n-V6M"/>
-                <outlet property="lbFrame" destination="DTt-yf-lYj" id="k1c-NA-6lk"/>
-                <outlet property="view" destination="1" id="3"/>
+                <outlet property="backgroundImage" destination="jb5-Cz-UIQ" id="xYF-iw-0gx"/>
+                <outlet property="btFlumpSparrowExample" destination="lBw-aq-XqF" id="A63-oe-ATS"/>
+                <outlet property="btFlumpUIKitExample" destination="XiJ-Z7-Nom" id="EHa-33-Cdr"/>
+                <outlet property="btLoop" destination="icG-IP-Gyb" id="leU-FJ-sq1"/>
+                <outlet property="btPause" destination="eef-Vv-Kq2" id="NKC-Id-wcP"/>
+                <outlet property="btPlay" destination="Y8q-pr-eX1" id="COd-kb-fTs"/>
+                <outlet property="btStop" destination="ALh-OL-Htf" id="5C4-zv-pNJ"/>
+                <outlet property="lbAnimationComplete" destination="Co2-JW-cei" id="sIg-J9-LvZ"/>
+                <outlet property="lbAnimationCompleteTopConstraint" destination="wfP-c8-J76" id="QEd-N9-DEC"/>
+                <outlet property="lbFrame" destination="DTt-yf-lYj" id="w4G-0e-6Ah"/>
+                <outlet property="view" destination="1" id="LXg-mL-elo"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -25,28 +25,13 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f2Z-mM-b4W" userLabel="flumpContainer">
-                    <rect key="frame" x="150" y="66" width="300" height="300"/>
-                    <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="frame: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTt-yf-lYj" userLabel="lbFrame">
-                            <rect key="frame" x="10" y="260" width="290" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="7PT-2Q-bCY"/>
-                            </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jb5-Cz-UIQ" userLabel="backgroundImage">
+                    <rect key="frame" x="180" y="330" width="240" height="240"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="DTt-yf-lYj" secondAttribute="trailing" id="37s-rp-Ytj"/>
-                        <constraint firstAttribute="bottom" secondItem="DTt-yf-lYj" secondAttribute="bottom" id="4O4-LQ-Xg4"/>
-                        <constraint firstItem="DTt-yf-lYj" firstAttribute="leading" secondItem="f2Z-mM-b4W" secondAttribute="leading" constant="10" id="4qE-bG-cSY"/>
-                        <constraint firstAttribute="width" constant="300" id="HCO-pt-INH"/>
-                        <constraint firstAttribute="height" constant="300" id="htw-Ig-kiY"/>
+                        <constraint firstAttribute="height" constant="240" id="OdD-Le-71Q"/>
+                        <constraint firstAttribute="width" constant="240" id="cbQ-Jf-7IP"/>
                     </constraints>
-                </view>
+                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ovF-7X-RT9" userLabel="toggleFlumpExample">
                     <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
                     <subviews>
@@ -88,6 +73,17 @@
                         <constraint firstAttribute="bottom" secondItem="lBw-aq-XqF" secondAttribute="bottom" id="zZB-nq-sRu"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="frame: 0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DTt-yf-lYj" userLabel="lbFrame">
+                    <rect key="frame" x="155" y="316" width="290" height="40"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="7PT-2Q-bCY"/>
+                        <constraint firstAttribute="width" constant="290" id="k5c-h0-rAv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8q-pr-eX1" userLabel="btPlay">
                     <rect key="frame" x="160" y="376" width="280" height="48"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -136,33 +132,35 @@
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Animation Complete !!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Co2-JW-cei" userLabel="lbAnimationComplete">
-                    <rect key="frame" x="180" y="140" width="240" height="60"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ANIMATION COMPLETE" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Co2-JW-cei" userLabel="lbAnimationComplete">
+                    <rect key="frame" x="170" y="140" width="260" height="70"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="60" id="MXU-jS-pk5"/>
-                        <constraint firstAttribute="width" constant="240" id="Pu5-9Q-yG0"/>
+                        <constraint firstAttribute="height" constant="70" id="MXU-jS-pk5"/>
+                        <constraint firstAttribute="width" constant="260" id="Pu5-9Q-yG0"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" red="1" green="0.0" blue="0.1187502725" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="ALh-OL-Htf" secondAttribute="centerX" id="0mW-tY-ZOH"/>
                 <constraint firstItem="ALh-OL-Htf" firstAttribute="top" secondItem="eef-Vv-Kq2" secondAttribute="bottom" constant="8" id="1n2-8K-m8C"/>
                 <constraint firstAttribute="trailing" secondItem="ovF-7X-RT9" secondAttribute="trailing" id="2KZ-DB-f59"/>
-                <constraint firstAttribute="centerX" secondItem="f2Z-mM-b4W" secondAttribute="centerX" id="M6Y-7N-SeT"/>
                 <constraint firstAttribute="centerX" secondItem="Co2-JW-cei" secondAttribute="centerX" id="MP6-4B-CVk"/>
                 <constraint firstItem="ovF-7X-RT9" firstAttribute="top" secondItem="1" secondAttribute="top" id="Z02-8K-TWs"/>
+                <constraint firstItem="Y8q-pr-eX1" firstAttribute="top" secondItem="DTt-yf-lYj" secondAttribute="bottom" constant="20" id="c6o-PF-e5d"/>
                 <constraint firstAttribute="centerX" secondItem="icG-IP-Gyb" secondAttribute="centerX" id="fbP-Nq-erQ"/>
                 <constraint firstAttribute="centerX" secondItem="eef-Vv-Kq2" secondAttribute="centerX" id="gNr-8u-a9H"/>
                 <constraint firstAttribute="centerX" secondItem="Y8q-pr-eX1" secondAttribute="centerX" id="kXo-pv-589"/>
                 <constraint firstItem="icG-IP-Gyb" firstAttribute="top" secondItem="ALh-OL-Htf" secondAttribute="bottom" constant="8" id="kjU-3t-jFt"/>
+                <constraint firstAttribute="centerX" secondItem="jb5-Cz-UIQ" secondAttribute="centerX" id="ojx-zS-Okk"/>
                 <constraint firstItem="eef-Vv-Kq2" firstAttribute="top" secondItem="Y8q-pr-eX1" secondAttribute="bottom" constant="8" id="ruf-Eu-uQ8"/>
                 <constraint firstItem="ovF-7X-RT9" firstAttribute="leading" secondItem="1" secondAttribute="leading" id="sCm-VP-nZk"/>
-                <constraint firstItem="Y8q-pr-eX1" firstAttribute="top" secondItem="f2Z-mM-b4W" secondAttribute="bottom" constant="10" id="trs-EB-1ke"/>
+                <constraint firstAttribute="centerX" secondItem="DTt-yf-lYj" secondAttribute="centerX" id="t4Q-cV-Woh"/>
+                <constraint firstAttribute="centerY" secondItem="jb5-Cz-UIQ" secondAttribute="centerY" constant="-150" id="tBj-gv-kUR"/>
                 <constraint firstItem="Co2-JW-cei" firstAttribute="top" secondItem="1" secondAttribute="top" constant="140" id="wfP-c8-J76"/>
                 <constraint firstAttribute="bottom" secondItem="icG-IP-Gyb" secondAttribute="bottom" constant="8" id="zAP-8y-FeT"/>
                 <constraint firstItem="icG-IP-Gyb" firstAttribute="top" secondItem="ALh-OL-Htf" secondAttribute="bottom" constant="8" id="zUp-2U-402"/>

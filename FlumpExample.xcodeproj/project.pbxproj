@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4515DBA81B350565006AB74A /* APPSparrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515DBA41B350565006AB74A /* APPSparrowViewController.m */; };
+		4515DBA91B350565006AB74A /* APPUIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515DBA71B350565006AB74A /* APPUIViewController.m */; };
+		4515DBAC1B350572006AB74A /* APPRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515DBAB1B350572006AB74A /* APPRootViewController.m */; };
+		4515DBAF1B351076006AB74A /* SPStage+Transparency.m in Sources */ = {isa = PBXBuildFile; fileRef = 4515DBAE1B351076006AB74A /* SPStage+Transparency.m */; };
 		458B4ED21B34B24B007CBDD2 /* test3.png in Resources */ = {isa = PBXBuildFile; fileRef = 458B4ECF1B34B24B007CBDD2 /* test3.png */; };
 		458B4ED31B34B24B007CBDD2 /* test3.swf in Resources */ = {isa = PBXBuildFile; fileRef = 458B4ED01B34B24B007CBDD2 /* test3.swf */; };
 		458B4ED41B34B24B007CBDD2 /* test3.xml in Resources */ = {isa = PBXBuildFile; fileRef = 458B4ED11B34B24B007CBDD2 /* test3.xml */; };
@@ -18,7 +22,6 @@
 		458B4EE71B34B26A007CBDD2 /* FLMPTexture.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EE11B34B26A007CBDD2 /* FLMPTexture.m */; };
 		458B4EEC1B34B27D007CBDD2 /* FLMPView.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EEB1B34B27D007CBDD2 /* FLMPView.m */; };
 		458B4EEF1B34BC41007CBDD2 /* FLMPUIAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EEE1B34BC41007CBDD2 /* FLMPUIAtlas.m */; };
-		458B4EF21B34C03F007CBDD2 /* APPSparrowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EF11B34C03F007CBDD2 /* APPSparrowViewController.m */; };
 		458B4EF51B34C795007CBDD2 /* FLMPSPAtlas.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EF41B34C795007CBDD2 /* FLMPSPAtlas.m */; };
 		458B4EF81B34CAB0007CBDD2 /* FLMPSPDisplayObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 458B4EF71B34CAB0007CBDD2 /* FLMPSPDisplayObject.m */; };
 		45999B031AE344B100EA1BEC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B021AE344B100EA1BEC /* main.m */; };
@@ -26,8 +29,7 @@
 		45999B1D1AE344B100EA1BEC /* FlumpExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B1C1AE344B100EA1BEC /* FlumpExampleTests.m */; };
 		45999B451AE3451800EA1BEC /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 45999B271AE3451800EA1BEC /* Default-568h@2x.png */; };
 		45999B4E1AE3451800EA1BEC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B351AE3451800EA1BEC /* AppDelegate.m */; };
-		45999B4F1AE3451800EA1BEC /* APPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45999B371AE3451800EA1BEC /* APPViewController.m */; };
-		45999B501AE3451800EA1BEC /* APPViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45999B381AE3451800EA1BEC /* APPViewController.xib */; };
+		45999B501AE3451800EA1BEC /* APPRootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 45999B381AE3451800EA1BEC /* APPRootViewController.xib */; };
 		67DBE0D171DAB37C81015A55 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 952B6851C9DEFBCC41236AA4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +44,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4515DBA31B350565006AB74A /* APPSparrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPSparrowViewController.h; sourceTree = "<group>"; };
+		4515DBA41B350565006AB74A /* APPSparrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPSparrowViewController.m; sourceTree = "<group>"; };
+		4515DBA61B350565006AB74A /* APPUIViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPUIViewController.h; sourceTree = "<group>"; };
+		4515DBA71B350565006AB74A /* APPUIViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPUIViewController.m; sourceTree = "<group>"; };
+		4515DBAA1B350572006AB74A /* APPRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPRootViewController.h; sourceTree = "<group>"; };
+		4515DBAB1B350572006AB74A /* APPRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPRootViewController.m; sourceTree = "<group>"; };
+		4515DBAD1B351076006AB74A /* SPStage+Transparency.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SPStage+Transparency.h"; sourceTree = "<group>"; };
+		4515DBAE1B351076006AB74A /* SPStage+Transparency.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SPStage+Transparency.m"; sourceTree = "<group>"; };
 		458B4ECF1B34B24B007CBDD2 /* test3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test3.png; sourceTree = "<group>"; };
 		458B4ED01B34B24B007CBDD2 /* test3.swf */ = {isa = PBXFileReference; lastKnownFileType = file; path = test3.swf; sourceTree = "<group>"; };
 		458B4ED11B34B24B007CBDD2 /* test3.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = test3.xml; sourceTree = "<group>"; };
@@ -61,8 +71,6 @@
 		458B4EEB1B34B27D007CBDD2 /* FLMPView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPView.m; sourceTree = "<group>"; };
 		458B4EED1B34BC41007CBDD2 /* FLMPUIAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPUIAtlas.h; sourceTree = "<group>"; };
 		458B4EEE1B34BC41007CBDD2 /* FLMPUIAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPUIAtlas.m; sourceTree = "<group>"; };
-		458B4EF01B34C03F007CBDD2 /* APPSparrowViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPSparrowViewController.h; sourceTree = "<group>"; };
-		458B4EF11B34C03F007CBDD2 /* APPSparrowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPSparrowViewController.m; sourceTree = "<group>"; };
 		458B4EF31B34C795007CBDD2 /* FLMPSPAtlas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPSPAtlas.h; sourceTree = "<group>"; };
 		458B4EF41B34C795007CBDD2 /* FLMPSPAtlas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FLMPSPAtlas.m; sourceTree = "<group>"; };
 		458B4EF61B34CAB0007CBDD2 /* FLMPSPDisplayObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FLMPSPDisplayObject.h; sourceTree = "<group>"; };
@@ -77,9 +85,7 @@
 		45999B271AE3451800EA1BEC /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		45999B341AE3451800EA1BEC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		45999B351AE3451800EA1BEC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		45999B361AE3451800EA1BEC /* APPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APPViewController.h; sourceTree = "<group>"; };
-		45999B371AE3451800EA1BEC /* APPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APPViewController.m; sourceTree = "<group>"; };
-		45999B381AE3451800EA1BEC /* APPViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPViewController.xib; sourceTree = "<group>"; };
+		45999B381AE3451800EA1BEC /* APPRootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = APPRootViewController.xib; sourceTree = "<group>"; };
 		5EC4A8794A44D4497BA70B48 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		952B6851C9DEFBCC41236AA4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E77D52720C24D6B0D83EC266 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -104,6 +110,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4515DBA21B350565006AB74A /* APPSparrowViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4515DBAD1B351076006AB74A /* SPStage+Transparency.h */,
+				4515DBAE1B351076006AB74A /* SPStage+Transparency.m */,
+				4515DBA31B350565006AB74A /* APPSparrowViewController.h */,
+				4515DBA41B350565006AB74A /* APPSparrowViewController.m */,
+			);
+			path = APPSparrowViewController;
+			sourceTree = "<group>";
+		};
+		4515DBA51B350565006AB74A /* APPUIViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4515DBA61B350565006AB74A /* APPUIViewController.h */,
+				4515DBA71B350565006AB74A /* APPUIViewController.m */,
+			);
+			path = APPUIViewController;
+			sourceTree = "<group>";
+		};
 		458B4ED51B34B26A007CBDD2 /* export */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,11 +244,11 @@
 			children = (
 				45999B341AE3451800EA1BEC /* AppDelegate.h */,
 				45999B351AE3451800EA1BEC /* AppDelegate.m */,
-				458B4EF01B34C03F007CBDD2 /* APPSparrowViewController.h */,
-				458B4EF11B34C03F007CBDD2 /* APPSparrowViewController.m */,
-				45999B361AE3451800EA1BEC /* APPViewController.h */,
-				45999B371AE3451800EA1BEC /* APPViewController.m */,
-				45999B381AE3451800EA1BEC /* APPViewController.xib */,
+				4515DBAA1B350572006AB74A /* APPRootViewController.h */,
+				4515DBAB1B350572006AB74A /* APPRootViewController.m */,
+				45999B381AE3451800EA1BEC /* APPRootViewController.xib */,
+				4515DBA21B350565006AB74A /* APPSparrowViewController */,
+				4515DBA51B350565006AB74A /* APPUIViewController */,
 				45999B391AE3451800EA1BEC /* flump */,
 			);
 			path = Classes;
@@ -339,7 +365,7 @@
 			files = (
 				45999B0E1AE344B100EA1BEC /* Images.xcassets in Resources */,
 				458B4ED31B34B24B007CBDD2 /* test3.swf in Resources */,
-				45999B501AE3451800EA1BEC /* APPViewController.xib in Resources */,
+				45999B501AE3451800EA1BEC /* APPRootViewController.xib in Resources */,
 				45999B451AE3451800EA1BEC /* Default-568h@2x.png in Resources */,
 				458B4ED21B34B24B007CBDD2 /* test3.png in Resources */,
 				458B4ED41B34B24B007CBDD2 /* test3.xml in Resources */,
@@ -393,12 +419,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4515DBA91B350565006AB74A /* APPUIViewController.m in Sources */,
 				458B4EF51B34C795007CBDD2 /* FLMPSPAtlas.m in Sources */,
 				458B4EE61B34B26A007CBDD2 /* FLMPMovie.m in Sources */,
 				458B4EE71B34B26A007CBDD2 /* FLMPTexture.m in Sources */,
-				45999B4F1AE3451800EA1BEC /* APPViewController.m in Sources */,
-				458B4EF21B34C03F007CBDD2 /* APPSparrowViewController.m in Sources */,
 				458B4EF81B34CAB0007CBDD2 /* FLMPSPDisplayObject.m in Sources */,
+				4515DBAC1B350572006AB74A /* APPRootViewController.m in Sources */,
 				458B4EE51B34B26A007CBDD2 /* FLMPLayer.m in Sources */,
 				45999B4E1AE3451800EA1BEC /* AppDelegate.m in Sources */,
 				458B4EE21B34B26A007CBDD2 /* FLMPAtlas.m in Sources */,
@@ -406,6 +432,8 @@
 				458B4EEC1B34B27D007CBDD2 /* FLMPView.m in Sources */,
 				458B4EE41B34B26A007CBDD2 /* FLMPKeyframe.m in Sources */,
 				45999B031AE344B100EA1BEC /* main.m in Sources */,
+				4515DBAF1B351076006AB74A /* SPStage+Transparency.m in Sources */,
+				4515DBA81B350565006AB74A /* APPSparrowViewController.m in Sources */,
 				458B4EEF1B34BC41007CBDD2 /* FLMPUIAtlas.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

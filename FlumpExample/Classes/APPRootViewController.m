@@ -1,55 +1,62 @@
 //
-//  CViewController.m
-//  CFlump
-//
-//  Created by Levi Eggert on 4/17/14.
-//  Copyright (c) 2014 Levi Eggert. All rights reserved.
+// @author Levi Eggert
 //
 
-#import "APPViewController.h"
+#import "APPRootViewController.h"
+#import "APPUIViewController.h"
 #import "APPSparrowViewController.h"
 
-#import "FLMPExport.h"
-#import "FLMPSPAtlas.h"
-#import "FLMPUIAtlas.h"
-
-#import "Sparrow.h"
-#import "SPStage.h"
-
+static NSString *const ImageNameXcode = @"xcode";
+static NSString *const ImageNameSparrow = @"sparrow";
 static NSString *const FrameSuffix = @"Frame: ";
+static CGFloat const BackgroundImageAlpha = 1.0f;
+static CGFloat const FlumpButtonControlEnabledAlpha = 0.85f;
+static CGFloat const FlumpButtonControlDisabledAlpha = 0.4f;
+static CGFloat const LbAnimationCompleteShowConstant = 160;
+static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
 
-@implementation APPViewController
+@implementation APPRootViewController
 
-- (id)init
+-(id)init
 {
-    self = [super initWithNibName:@"APPViewController" bundle:nil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return [super initWithNibName:@"APPRootViewController" bundle:nil];
 }
 
 -(void)dealloc
 {
+    self.uiViewController = nil;
     self.sparrowViewController = nil;
-    self.flumpSPDisplayObject = nil;
-    self.flumpViewUIKit = nil;
 }
 
-- (void)viewDidLoad
+-(void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    // Do any additional setup after loading the view.
     
     [[UIApplication sharedApplication] setStatusBarHidden:YES];
     
+    //backgroundImage
+    self.backgroundImage.alpha = BackgroundImageAlpha;
+    
+    //uiViewController
+    self.uiViewController = [[APPUIViewController alloc] init];
+    [self.view insertSubview:self.uiViewController.view aboveSubview:self.backgroundImage];
+    self.uiViewController.flumpViewUIKit.delegate = self;
+    
     //sparrowViewController
     self.sparrowViewController = [[APPSparrowViewController alloc] init];
-    [self.view insertSubview:self.sparrowViewController.view atIndex:0];
+    [self.view insertSubview:self.sparrowViewController.view aboveSubview:self.backgroundImage];
     
     //lbFrame
     self.lbFrame.textColor = [UIColor blackColor];
     [self.lbFrame setFont:[UIFont fontWithName:@"Helvetica-Bold" size:12.0f]];
+    self.lbFrame.backgroundColor = [UIColor clearColor];
+    
+    //lbAnimationComplete
+    self.lbAnimationComplete.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.lbAnimationComplete.layer.shadowRadius = 5.0f;
+    self.lbAnimationComplete.layer.shadowOffset = CGSizeZero;
+    self.lbAnimationComplete.layer.shadowOpacity = 0.3f;
     
     //disable flump buttons
     [self setFlumpButtonControl:self.btFlumpUIKitExample enabled:NO];
@@ -58,47 +65,21 @@ static NSString *const FrameSuffix = @"Frame: ";
     [self setFlumpButtonControl:self.btStop enabled:NO];
     [self setFlumpButtonControl:self.btPlay enabled:NO];
     [self setFlumpButtonControl:self.btLoop enabled:NO];
-    
+        
     //hide lbAnimationComplete
     [self setLbAnimationCompleteHidden:YES withAnimation:NO];
     
-    //flumpExportUIKit
-    FLMPExport *flumpExportSparrow = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3" atlasClass:[FLMPSPAtlas class]];
-    
-    //flumpSPDisplayObject
-    self.flumpSPDisplayObject = [[FLMPSPDisplayObject alloc] initWithFlumpExport:flumpExportSparrow movieName:@"test3_movie"];
-    self.flumpSPDisplayObject.x = 10.0f;
-    self.flumpSPDisplayObject.y = 64.0f;
-    [self.flumpSPDisplayObject play];
-    
-    SPStage *stage = Sparrow.stage;
-    [stage addChild:self.flumpSPDisplayObject];
-    
-    //flumpExportUIKit
-    FLMPExport *flumpExportUIKit = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3" atlasClass:[FLMPUIAtlas class]];
-    
-    //flumpViewUIKit
-    self.flumpViewUIKit = [[FLMPView alloc] initWithFlumpExport:flumpExportUIKit movieName:@"test3_movie"];
-    self.flumpViewUIKit.delegate = self;
-    CGRect flumpViewFrame = self.flumpContainer.frame;
-    flumpViewFrame.origin = CGPointMake(0.0f, 0.0f);
-    [self.flumpViewUIKit setFrame:flumpViewFrame];
-        
-    //flumpContainer
-    [self.flumpContainer setBackgroundColor:[UIColor clearColor]];
-    self.flumpContainer.layer.borderColor = [UIColor clearColor].CGColor;
-    self.flumpContainer.layer.borderWidth = 1.0f;
-    [self.flumpContainer addSubview:self.flumpViewUIKit];
-
-    //play
-    [self.flumpViewUIKit play];
-    [self loopFlumpView:YES];
+    //loopFlumpView
+    [self loopFlumpView:self.uiViewController.flumpViewUIKit.loop];
     
     //flumpExampleType
-    self.flumpExampleType = FlumpExampleTypeSparrow;
+    self.flumpExampleType = FlumpExampleTypeUIKit;
+    
+    [self.uiViewController.flumpViewUIKit play];
+    [self.sparrowViewController.flumpSPDisplayObject play];
 }
 
-- (void)didReceiveMemoryWarning
+-(void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -150,22 +131,22 @@ static NSString *const FrameSuffix = @"Frame: ";
     }
     if ([button isEqual:self.btPlay])
     {
-        [self.flumpViewUIKit play];
-        [self.flumpSPDisplayObject play];
+        [self.uiViewController.flumpViewUIKit play];
+        [self.sparrowViewController.flumpSPDisplayObject play];
     }
     else if ([button isEqual:self.btPause])
     {
-        [self.flumpViewUIKit pause];
-        [self.flumpSPDisplayObject pause];
+        [self.uiViewController.flumpViewUIKit pause];
+        [self.sparrowViewController.flumpSPDisplayObject pause];
     }
     else if ([button isEqual:self.btStop])
     {
-        [self.flumpViewUIKit stop];
-        [self.flumpSPDisplayObject stop];
+        [self.uiViewController.flumpViewUIKit stop];
+        [self.sparrowViewController.flumpSPDisplayObject stop];
     }
     else if ([button isEqual:self.btLoop])
     {
-        BOOL isLooping = self.flumpViewUIKit.loop;
+        BOOL isLooping = self.uiViewController.flumpViewUIKit.loop;
         
         [self loopFlumpView:!isLooping];
     }
@@ -173,28 +154,19 @@ static NSString *const FrameSuffix = @"Frame: ";
 
 #pragma mark private methods
 
--(void)updateFrame:(NSInteger)frame
-{
-    NSString *stringFrame = [@(frame) stringValue];
-    NSMutableString *mutableFrame = [[NSMutableString alloc] initWithString:FrameSuffix];
-    [mutableFrame appendString:stringFrame];
-    
-    self.lbFrame.text = mutableFrame;
-}
-
 -(void)setFlumpButtonControl:(UIButton *)button enabled:(BOOL)enabled
 {
     if (enabled)
     {
         button.backgroundColor = [UIColor darkGrayColor];
-        button.alpha = 1.0f;
+        button.alpha = FlumpButtonControlEnabledAlpha;
         [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     else
     {
         button.backgroundColor = [UIColor lightGrayColor];
-        button.alpha = 0.4f;
-        [button setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        button.alpha = FlumpButtonControlDisabledAlpha;
+        [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     }
 }
 
@@ -202,10 +174,10 @@ static NSString *const FrameSuffix = @"Frame: ";
 {
     if (!hidden)
     {
-        self.lbAnimationCompleteTopConstraint.constant = -60.0f;
+        self.lbAnimationCompleteTopConstraint.constant = LbAnimationCompleteHideConstant;
         [self.lbAnimationComplete layoutIfNeeded];
         
-        self.lbAnimationCompleteTopConstraint.constant = 100.0f;
+        self.lbAnimationCompleteTopConstraint.constant = LbAnimationCompleteShowConstant;
         
         self.lbAnimationComplete.alpha = 0.0f;
         
@@ -227,7 +199,7 @@ static NSString *const FrameSuffix = @"Frame: ";
     }
     else if (hidden)
     {
-        self.lbAnimationCompleteTopConstraint.constant = -60.0f;
+        self.lbAnimationCompleteTopConstraint.constant = LbAnimationCompleteHideConstant;
         
         if (animation)
         {
@@ -249,15 +221,15 @@ static NSString *const FrameSuffix = @"Frame: ";
 {
     if (loop)
     {
-        self.flumpViewUIKit.loop = YES;
-        self.flumpSPDisplayObject.loop = YES;
+        self.uiViewController.flumpViewUIKit.loop = YES;
+        self.sparrowViewController.flumpSPDisplayObject.loop = YES;
         
         [self setFlumpButtonControl:self.btLoop enabled:YES];
     }
     else
     {
-        self.flumpViewUIKit.loop = NO;
-        self.flumpSPDisplayObject.loop = NO;
+        self.uiViewController.flumpViewUIKit.loop = NO;
+        self.sparrowViewController.flumpSPDisplayObject.loop = NO;
         
         [self setFlumpButtonControl:self.btLoop enabled:NO];
     }
@@ -279,8 +251,10 @@ static NSString *const FrameSuffix = @"Frame: ";
             [self setFlumpButtonControl:self.btFlumpUIKitExample enabled:YES];
             [self setFlumpButtonControl:self.btFlumpSparrowExample enabled:NO];
             
-            self.flumpViewUIKit.hidden = NO;
+            self.uiViewController.view.hidden = NO;
             self.sparrowViewController.view.hidden = YES;
+            
+            [self.backgroundImage setImage:[UIImage imageNamed:ImageNameXcode]];
             
             break;
         }
@@ -289,12 +263,25 @@ static NSString *const FrameSuffix = @"Frame: ";
             [self setFlumpButtonControl:self.btFlumpUIKitExample enabled:NO];
             [self setFlumpButtonControl:self.btFlumpSparrowExample enabled:YES];
             
-            self.flumpViewUIKit.hidden = YES;
+            self.uiViewController.view.hidden = YES;
             self.sparrowViewController.view.hidden = NO;
+            
+            [self.backgroundImage setImage:[UIImage imageNamed:ImageNameSparrow]];
             
             break;
         }
     }
+}
+
+-(void)setLbFrameCount:(NSInteger)lbFrameCount
+{
+    _lbFrameCount = lbFrameCount;
+    
+    NSString *stringFrame = [@(lbFrameCount) stringValue];
+    NSMutableString *mutableFrame = [[NSMutableString alloc] initWithString:FrameSuffix];
+    [mutableFrame appendString:stringFrame];
+    
+    self.lbFrame.text = mutableFrame;
 }
 
 #pragma mark FLMPViewDelegate
@@ -326,7 +313,7 @@ static NSString *const FrameSuffix = @"Frame: ";
 
 -(void)flumpViewDidUpdateFrame:(FLMPView *)flumpView frame:(NSInteger)frame
 {
-    [self updateFrame:frame];
+    self.lbFrameCount = frame;
 }
 
 -(void)flumpViewDidComplete:(FLMPView *)flumpView

@@ -8,8 +8,12 @@
 
 #import "SPViewController.h"
 
+@class FLMPSPDisplayObject;
+
 @interface APPSparrowViewController : SPViewController{
     
 }
+
+@property(nonatomic, strong) FLMPSPDisplayObject *flumpSPDisplayObject;
 
 @end

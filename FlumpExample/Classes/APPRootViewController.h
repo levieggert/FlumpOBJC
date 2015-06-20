@@ -1,16 +1,13 @@
 //
-//  CViewController.h
-//  CFlump
-//
-//  Created by Levi Eggert on 4/17/14.
-//  Copyright (c) 2014 Levi Eggert. All rights reserved.
+// @author Levi Eggert
 //
 
 #import <UIKit/UIKit.h>
 
-#import "FLMPSPDisplayObject.h"
 #import "FLMPView.h"
+#import "FLMPSPDisplayObject.h"
 
+@class APPUIViewController;
 @class APPSparrowViewController;
 
 typedef enum{
@@ -18,11 +15,11 @@ typedef enum{
     FlumpExampleTypeSparrow = 2
 }FlumpExampleType;
 
-@interface APPViewController : UIViewController<FLMPViewDelegate>{
+@interface APPRootViewController : UIViewController<FLMPViewDelegate>{
     
 }
 
-@property(nonatomic, weak) IBOutlet UIView *flumpContainer;
+@property(nonatomic, weak) IBOutlet UIImageView *backgroundImage;
 @property(nonatomic, weak) IBOutlet UIButton *btFlumpUIKitExample;
 @property(nonatomic, weak) IBOutlet UIButton *btFlumpSparrowExample;
 @property(nonatomic, weak) IBOutlet UIButton *btPlay;
@@ -34,9 +31,9 @@ typedef enum{
 
 @property(nonatomic, weak) IBOutlet NSLayoutConstraint *lbAnimationCompleteTopConstraint;
 
+@property(nonatomic, strong) APPUIViewController *uiViewController;
 @property(nonatomic, strong) APPSparrowViewController *sparrowViewController;
-@property(nonatomic, strong) FLMPSPDisplayObject *flumpSPDisplayObject;
-@property(nonatomic, strong) FLMPView *flumpViewUIKit;
 @property(nonatomic, assign) FlumpExampleType flumpExampleType;
+@property(nonatomic, assign) NSInteger lbFrameCount;
 
 @end
