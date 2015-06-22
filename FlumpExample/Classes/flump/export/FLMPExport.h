@@ -14,7 +14,6 @@
 
 @class FLMPAtlas;
 @class FLMPMovie;
-@class FLMPView;
 
 @interface FLMPExport : NSObject<NSXMLParserDelegate>{
     
@@ -28,7 +27,6 @@
 
 -(id)initWithFlumpXMLFileName:(NSString *)fileName;
 -(id)initWithFlumpXMLFileName:(NSString *)fileName atlasClass:(Class)atlasClass;
--(FLMPView *)getFlumpViewWithMovieName:(NSString *)movieName;
 -(FLMPMovie *)getFlumpMovieWithMovieName:(NSString *)movieName;
 -(FLMPAtlas *)getAtlasWithTextureName:(NSString *)textureName;
 

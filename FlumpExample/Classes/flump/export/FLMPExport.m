@@ -8,7 +8,6 @@
 #import "FLMPKeyframe.h"
 #import "FLMPAtlas.h"
 #import "FLMPTexture.h"
-#import "FLMPView.h"
 
 @implementation FLMPExport
 
@@ -85,11 +84,6 @@
 }
 
 #pragma mark public methods
-
--(FLMPView *)getFlumpViewWithMovieName:(NSString *)movieName
-{
-    return [[FLMPView alloc] initWithFlumpExport:self movieName:movieName];
-}
 
 -(FLMPMovie *)getFlumpMovieWithMovieName:(NSString *)movieName
 {
