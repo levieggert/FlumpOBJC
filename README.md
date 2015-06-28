@@ -105,3 +105,9 @@ FLMPView *flumpView = [[FLMPView alloc] initWithFlumpExport:flumpExportUIKit mov
 
 [flumpView play];
 ```
+
+
+Notes
+----------------
+
+Tested running iOS 7 and Sparrow 2.1.
