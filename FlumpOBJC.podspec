@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author           = { "levieggert" => "levi_eggert@hotmail.com" }
   s.platform     	 = :ios, '7.0'
-  s.source 			 = { :git => "https://github.com/levieggert/FlumpOBJC", :tag => "1.2", :submodules => true }
+  s.source 			 = { :git => "https://github.com/levieggert/FlumpOBJC.git", :tag => "1.2", :submodules => true }
   s.requires_arc 	 = true
 
   s.subspec 'export' do |ss|
