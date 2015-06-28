@@ -1,4 +1,4 @@
-Flump Objective-C Runtime for iOS
+Flump Objective-C Runtime for iOS UIKit and Sparrow 2.1
 ======
 
 What is Flump?
