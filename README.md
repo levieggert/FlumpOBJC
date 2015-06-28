@@ -88,7 +88,7 @@ Creating a FLMPSPDisplayObject - Sparrow
 FLMPExport *flumpExportSparrow = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3" atlasClass:[FLMPSPAtlas class]];
 FLMPSPDisplayObject *flumpDisplayObject = [[FLMPSPDisplayObject alloc] initWithFlumpExport:flumpExportSparrow movieName:@"test3_movie"];
 
-[stage addChild:flumpSPDisplayObject];
+[stage addChild:flumpDisplayObject];
 
 [flumpDisplayObject play];
 ```
