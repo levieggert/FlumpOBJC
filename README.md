@@ -32,6 +32,22 @@ So in this example we have 1 texture atlas exported from Flump as well as 4 sub 
 This has reduced our overall texture count to 5!
 
 
+Installation with CocoaPods
+----------------
+
+To install both Flump with UIKit and Flump with Sparrow use:
+
+pod 'FlumpOBJC'
+
+To install Flump with Sparrow use:
+
+pod 'FlumpOBJC/sparrow'
+
+To install Flump with UIKit use:
+
+pod 'FlumpOBJC/uikit'
+
+
 Common pitfalls
 ----------------
 
@@ -57,19 +73,33 @@ Example from test3.xml
 <movie name="test3_movie" frameRate="24">
 ```
 
-Notes using Flash
+
+Notes exporting Flash SWF to Flump Application
 ----------------
 
 1. Your flash animation should be a MovieClip symbol exported for Flash and placed at frame 1 on the stage.
 2. All layers in the animation should be symbols exported for Flash as Sprites.
 
 
-Creating a FLMPView
+Creating a FLMPSPDisplayObject - Sparrow
 ----------------
 
 ```
-FLMPExport *flumpExport = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3"];
-FLMPView *flumpView = [[FLMPView alloc] initWithFlumpExport:flumpExport movieName:@"test3_movie"];
+FLMPExport *flumpExportSparrow = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3" atlasClass:[FLMPSPAtlas class]];
+FLMPSPDisplayObject *flumpDisplayObject = [[FLMPSPDisplayObject alloc] initWithFlumpExport:flumpExportSparrow movieName:@"test3_movie"];
+
+[stage addChild:flumpSPDisplayObject];
+
+[flumpDisplayObject play];
+```
+
+
+Creating a FLMPView - UIkit
+----------------
+
+```
+FLMPExport *flumpExportUIKit = [[FLMPExport alloc] initWithFlumpXMLFileName:@"test3" atlasClass:[FLMPUIAtlas class]];
+FLMPView *flumpView = [[FLMPView alloc] initWithFlumpExport:flumpExportUIKit movieName:@"test3_movie"];
 
 [self.view addSubview:flumpView];
 
