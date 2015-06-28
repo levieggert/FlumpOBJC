@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-#import "APPViewController.h"
+
+#import "APPRootViewController.h"
 
 @implementation AppDelegate
 
@@ -17,7 +18,7 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     [self.window setBackgroundColor:[UIColor whiteColor]];
-    [self.window setRootViewController:[[APPViewController alloc] init]];
+    [self.window setRootViewController:[[APPRootViewController alloc] init]];
     [self.window makeKeyAndVisible];
     
     return YES;
