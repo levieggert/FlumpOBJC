@@ -1,5 +1,7 @@
-Flump Objective-C Runtime for iOS UIKit and Sparrow 2.1
+Flump Objective-C Runtime
 ======
+
+For both UIKit and Sparrow 2.1.
 
 What is Flump?
 ----------------
@@ -94,7 +96,7 @@ FLMPSPDisplayObject *flumpDisplayObject = [[FLMPSPDisplayObject alloc] initWithF
 ```
 
 
-Creating a FLMPView - UIkit
+Creating a FLMPView - UIKit
 ----------------
 
 ```
