@@ -24,7 +24,8 @@
 
 @property(nonatomic, strong, readonly) FLMPExport *flumpExport;
 @property(nonatomic, strong, readonly) NSString *movieName;
-@property(nonatomic, strong, readonly) NSMutableArray *layers;
+@property(nonatomic, strong, readonly) NSMutableArray *imageLayers;
+@property(nonatomic, strong, readonly) NSMutableDictionary *textures;
 @property(nonatomic, readonly) NSInteger prevFrame;
 @property(nonatomic, readonly) NSInteger currentFrame;
 @property(nonatomic, readonly) NSInteger totalFrames;

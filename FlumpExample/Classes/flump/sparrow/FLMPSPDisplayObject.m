@@ -8,7 +8,6 @@
 #import "FLMPLayer.h"
 #import "FLMPKeyframe.h"
 #import "FLMPSPAtlas.h"
-#import "FLMPSPLayer.h"
 
 #import "Sparrow.h"
 #import "SPJuggler.h"
@@ -62,14 +61,16 @@
 {
     _flumpExport = nil;
     _movieName = nil;
-    _layers = nil;
+    _imageLayers = nil;
+    _textures = nil;
 }
 
 #pragma mark private methods
 
 -(void)addFLMPSPLayers
 {
-    _layers = [[NSMutableArray alloc] init];
+    _imageLayers = [[NSMutableArray alloc] init];
+    _textures = [[NSMutableDictionary alloc] init];
     
     FLMPMovie *flumpMovie = [self.flumpExport getFlumpMovieWithMovieName:self.movieName];
     NSArray *layers = flumpMovie.layers;
@@ -77,14 +78,14 @@
     NSArray *keyframes = nil;
     NSString *keyframeTextureName = nil;
     SPTexture *texture = nil;
-    FLMPSPLayer *spFlumpLayer;
+    SPImage *imageLayer;
     for (FLMPLayer *layer in layers)
     {
-        spFlumpLayer = [[FLMPSPLayer alloc] init];
+        imageLayer = [[SPImage alloc] init];
         
-        [self addChild:spFlumpLayer.image];
+        [self addChild:imageLayer];
         
-        [self.layers addObject:spFlumpLayer];
+        [self.imageLayers addObject:imageLayer];
         
         keyframes = layer.keyframes;
         
@@ -92,7 +93,7 @@
         {
             keyframeTextureName = keyframe.textureName;
             
-            if (![spFlumpLayer.texturesDictionary objectForKey:keyframeTextureName])
+            if (![self.textures objectForKey:keyframeTextureName])
             {
                 atlas = (FLMPSPAtlas *)[self.flumpExport getAtlasWithTextureName:keyframeTextureName];
                 
@@ -100,7 +101,7 @@
                 {
                     texture = [atlas getImageAtTextureName:keyframeTextureName andCacheImageInLocalMemory:YES];
                     
-                    [spFlumpLayer addTexture:texture withTextureName:keyframeTextureName];
+                    [self.textures setValue:texture forKey:keyframeTextureName];
                 }
             }
         }
@@ -161,8 +162,8 @@
         NSArray *keyframes = nil;
         FLMPKeyframe *keyframe = nil;
         NSString *keyframeTextureName = nil;
-        SPImage *image;
-        FLMPSPLayer *spLayer;
+        SPImage *imageLayer;
+        SPTexture *texture;
         
         NSInteger layerIndex = 0;
         
@@ -175,22 +176,26 @@
                 keyframe = [keyframes objectAtIndex:self.currentFrame];
                 keyframeTextureName = keyframe.textureName;
                 
-                spLayer = [self.layers objectAtIndex:layerIndex];
-                image = spLayer.image;
+                texture = [self.textures objectForKey:keyframeTextureName];
                 
-                image.texture = [spLayer.texturesDictionary objectForKey:keyframeTextureName];
-                
-                [image readjustSize];
-                
-                image.x = keyframe.position.x;
-                image.y = keyframe.position.y;
-                image.scaleX = keyframe.scale.x;
-                image.scaleY = keyframe.scale.y;
-                image.skewX = keyframe.skew.x;
-                image.skewY = keyframe.skew.y;
-                image.pivotX = keyframe.pivot.x;
-                image.pivotY = keyframe.pivot.y;
-                image.alpha = keyframe.alpha;
+                if (texture)
+                {
+                    imageLayer = [self.imageLayers objectAtIndex:layerIndex];
+                    
+                    imageLayer.texture = texture;
+                    
+                    [imageLayer readjustSize];
+                    
+                    imageLayer.x = keyframe.position.x;
+                    imageLayer.y = keyframe.position.y;
+                    imageLayer.scaleX = keyframe.scale.x;
+                    imageLayer.scaleY = keyframe.scale.y;
+                    imageLayer.skewX = keyframe.skew.x;
+                    imageLayer.skewY = keyframe.skew.y;
+                    imageLayer.pivotX = keyframe.pivot.x;
+                    imageLayer.pivotY = keyframe.pivot.y;
+                    imageLayer.alpha = keyframe.alpha;
+                }
             }
             
             layerIndex++;
