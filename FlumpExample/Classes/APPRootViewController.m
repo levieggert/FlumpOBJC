@@ -256,7 +256,6 @@ static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
             [self.backgroundImage setImage:[UIImage imageNamed:ImageNameXcode]];
             
             self.uiViewController.flumpViewUIKit.delegate = self;
-            self.sparrowViewController.flumpSPDisplayObject.delegate = nil;
             
             break;
         }
@@ -271,7 +270,6 @@ static CGFloat const LbAnimationCompleteHideConstant = -100.0f;
             [self.backgroundImage setImage:[UIImage imageNamed:ImageNameSparrow]];
             
             self.uiViewController.flumpViewUIKit.delegate = nil;
-            self.sparrowViewController.flumpSPDisplayObject.delegate = self;
             
             break;
         }

@@ -10,34 +10,18 @@
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 
-#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-#import "SPDisplayObjectContainer.h"
-#import "SPAnimatable.h"
+@class SPImage;
+@class SPTexture;
 
-@class FLMPExport;
-@class FLMPSPDisplayObject;
-
-@interface FLMPSPDisplayObject : SPDisplayObjectContainer<SPAnimatable>{
+@interface FLMPSPLayer : NSObject{
     
 }
 
-@property(nonatomic, strong, readonly) FLMPExport *flumpExport;
-@property(nonatomic, strong, readonly) NSString *movieName;
-@property(nonatomic, strong, readonly) NSMutableArray *layers;
-@property(nonatomic, readonly) NSInteger prevFrame;
-@property(nonatomic, readonly) NSInteger currentFrame;
-@property(nonatomic, readonly) NSInteger totalFrames;
-@property(nonatomic, readonly) BOOL isPlaying;
-@property(nonatomic, assign) BOOL loop;
-@property(nonatomic, assign) CGFloat fps;
+@property(nonatomic, strong) SPImage *image;
+@property(nonatomic, strong, readonly) NSMutableDictionary *texturesDictionary;
 
--(id)initWithFlumpExport:(FLMPExport *)flumpExport movieName:(NSString *)movieName;
-
--(void)drawFrame:(NSInteger)frame;
--(void)clearFrame;
--(void)play;
--(void)pause;
--(void)stop;
+-(void)addTexture:(SPTexture *)texture withTextureName:(NSString *)textureName;
 
 @end

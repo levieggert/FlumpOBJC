@@ -8,6 +8,7 @@
 #import "FLMPLayer.h"
 #import "FLMPKeyframe.h"
 #import "FLMPSPAtlas.h"
+#import "FLMPSPLayer.h"
 
 #import "Sparrow.h"
 #import "SPJuggler.h"
@@ -29,6 +30,9 @@
         
         //movieName
         _movieName = movieName;
+        
+        //layers
+        [self addFLMPSPLayers];
         
         //isPlaying
         _isPlaying = NO;
@@ -58,9 +62,50 @@
 {
     _flumpExport = nil;
     _movieName = nil;
+    _layers = nil;
 }
 
 #pragma mark private methods
+
+-(void)addFLMPSPLayers
+{
+    _layers = [[NSMutableArray alloc] init];
+    
+    FLMPMovie *flumpMovie = [self.flumpExport getFlumpMovieWithMovieName:self.movieName];
+    NSArray *layers = flumpMovie.layers;
+    FLMPSPAtlas *atlas = nil;
+    NSArray *keyframes = nil;
+    NSString *keyframeTextureName = nil;
+    SPTexture *texture = nil;
+    FLMPSPLayer *spFlumpLayer;
+    for (FLMPLayer *layer in layers)
+    {
+        spFlumpLayer = [[FLMPSPLayer alloc] init];
+        
+        [self addChild:spFlumpLayer.image];
+        
+        [self.layers addObject:spFlumpLayer];
+        
+        keyframes = layer.keyframes;
+        
+        for (FLMPKeyframe *keyframe in keyframes)
+        {
+            keyframeTextureName = keyframe.textureName;
+            
+            if (![spFlumpLayer.texturesDictionary objectForKey:keyframeTextureName])
+            {
+                atlas = (FLMPSPAtlas *)[self.flumpExport getAtlasWithTextureName:keyframeTextureName];
+                
+                if (atlas != nil)
+                {
+                    texture = [atlas getImageAtTextureName:keyframeTextureName andCacheImageInLocalMemory:YES];
+                    
+                    [spFlumpLayer addTexture:texture withTextureName:keyframeTextureName];
+                }
+            }
+        }
+    }
+}
 
 -(NSInteger)getTotalFrames
 {
@@ -104,24 +149,22 @@
     
     _currentFrame = clampedFrame;
     
-    [self clearFrame];
-    
-    if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidUpdateFrame:frame:)])
-    {
-        [self.delegate flumpDisplayObjectDidUpdateFrame:self frame:self.currentFrame];
-    }
+    //[self clearFrame];
     
     FLMPMovie *flumpMovie = [self.flumpExport getFlumpMovieWithMovieName:self.movieName];
     NSArray *layers = flumpMovie.layers;
     
+    //TODO: Progress Block.
+    
     if (layers != nil)
     {
-        FLMPSPAtlas *atlas = nil;
         NSArray *keyframes = nil;
         FLMPKeyframe *keyframe = nil;
         NSString *keyframeTextureName = nil;
         SPImage *image;
-        SPTexture *texture = nil;
+        FLMPSPLayer *spLayer;
+        
+        NSInteger layerIndex = 0;
         
         for(FLMPLayer *layer in layers)
         {
@@ -132,26 +175,25 @@
                 keyframe = [keyframes objectAtIndex:self.currentFrame];
                 keyframeTextureName = keyframe.textureName;
                 
-                atlas = (FLMPSPAtlas *)[self.flumpExport getAtlasWithTextureName:keyframeTextureName];
+                spLayer = [self.layers objectAtIndex:layerIndex];
+                image = spLayer.image;
                 
-                if (atlas != nil)
-                {
-                    texture = [atlas getImageAtTextureName:keyframeTextureName andCacheImageInLocalMemory:YES];
-                    image = [[SPImage alloc] initWithTexture:texture];
-                    
-                    image.x = keyframe.position.x;
-                    image.y = keyframe.position.y;
-                    image.scaleX = keyframe.scale.x;
-                    image.scaleY = keyframe.scale.y;
-                    image.skewX = keyframe.skew.x;
-                    image.skewY = keyframe.skew.y;
-                    image.pivotX = keyframe.pivot.x;
-                    image.pivotY = keyframe.pivot.y;
-                    image.alpha = keyframe.alpha;
-                    
-                    [self addChild:image];
-                }
+                image.texture = [spLayer.texturesDictionary objectForKey:keyframeTextureName];
+                
+                [image readjustSize];
+                
+                image.x = keyframe.position.x;
+                image.y = keyframe.position.y;
+                image.scaleX = keyframe.scale.x;
+                image.scaleY = keyframe.scale.y;
+                image.skewX = keyframe.skew.x;
+                image.skewY = keyframe.skew.y;
+                image.pivotX = keyframe.pivot.x;
+                image.pivotY = keyframe.pivot.y;
+                image.alpha = keyframe.alpha;
             }
+            
+            layerIndex++;
         }
     }
 }
@@ -169,11 +211,6 @@
         
         SPJuggler *juggler = Sparrow.juggler;
         [juggler addObject:self];
-        
-        if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidPlay:)])
-        {
-            [self.delegate flumpDisplayObjectDidPlay:self];
-        }
     }
 }
 
@@ -185,11 +222,6 @@
         
         SPJuggler *juggler = Sparrow.juggler;
         [juggler removeObject:self];
-        
-        if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidPause:)])
-        {
-            [self.delegate flumpDisplayObjectDidPause:self];
-        }
     }
 }
 
@@ -206,11 +238,6 @@
     mElapsedTime = 0.0f;
     _prevFrame = 0;
     [self drawFrame:0];
-    
-    if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidStop:)])
-    {
-        [self.delegate flumpDisplayObjectDidStop:self];
-    }
 }
 
 #pragma mark SPAnimatable
@@ -230,10 +257,7 @@
         
         [self drawFrame:endFrame];
         
-        if ([self.delegate respondsToSelector:@selector(flumpDisplayObjectDidComplete:)])
-        {
-            [self.delegate flumpDisplayObjectDidComplete:self];
-        }
+        //TODO: Complete Block.
         
         return;
     }

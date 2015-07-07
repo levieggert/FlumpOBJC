@@ -15,7 +15,7 @@ typedef enum{
     FlumpExampleTypeSparrow = 2
 }FlumpExampleType;
 
-@interface APPRootViewController : UIViewController<FLMPViewDelegate, FLMPSPDisplayObjectDelegate>{
+@interface APPRootViewController : UIViewController<FLMPViewDelegate>{
     
 }
 
