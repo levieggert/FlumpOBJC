@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name             = "FlumpOBJC"
-  s.version          = "1.2"
+  s.version          = "1.2.1"
   s.summary  	     = "Flump runtimes for both UIKit and Sparrow Framework."
   s.homepage 		 = "https://github.com/levieggert/FlumpOBJC"
   s.license          = 'MIT'
   s.author           = { "levieggert" => "levi_eggert@hotmail.com" }
   s.platform     	 = :ios, '7.0'
-  s.source 			 = { :git => "https://github.com/levieggert/FlumpOBJC.git", :tag => "1.2", :submodules => true }
+  s.source 			 = { :git => "https://github.com/levieggert/FlumpOBJC.git", :tag => "1.2.1", :submodules => true }
   s.requires_arc 	 = true
 
   s.subspec 'export' do |ss|
